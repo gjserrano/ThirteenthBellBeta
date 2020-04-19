@@ -11,14 +11,18 @@ namespace ThirteenthBellAlpha.States
 {
     public class GameState : State
     {
-        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
-          : base(game, graphicsDevice, content)
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
 
+            //Start
+            _graphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.End();
         }
 
         public override void PostUpdate(GameTime gameTime)

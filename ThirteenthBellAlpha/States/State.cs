@@ -19,6 +19,8 @@ namespace ThirteenthBellAlpha.States
 
         protected Game1 _game;
 
+        protected Texture2D _backgroundTexture;
+
         #endregion
 
         #region Methods

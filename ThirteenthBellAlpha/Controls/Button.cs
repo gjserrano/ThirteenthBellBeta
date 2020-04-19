@@ -65,7 +65,7 @@ namespace ThirteenthBellAlpha.Controls
             if (_isHovering)
                 colour = Color.Gray;
 
-            spriteBatch.Draw(_texture, Rectangle, colour);
+            spriteBatch.Draw(_texture, Rectangle, null, colour, 0f, new Vector2(0,0), SpriteEffects.None, 0.99f);
 
             if (!string.IsNullOrEmpty(Text))
             {

@@ -13,43 +13,60 @@ namespace ThirteenthBellAlpha.States
     public class MenuState : State
     {
         private List<Component> _components;
+        public Texture2D backgroundTexture1;
 
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
-          : base(game, graphicsDevice, content)
+        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            backgroundTexture1 = _content.Load<Texture2D>("Menu Backgrounds/1");
+            var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/1");
+            var backgroundBackground = new Background(backgroundTexture);
+
             var buttonTexture = _content.Load<Texture2D>("Controls/Play Game");
+            var characterSelectTexture = _content.Load<Texture2D>("Controls/Character");
+            var connectTexture = _content.Load<Texture2D>("Controls/Connect");
+            var quitTexture = _content.Load<Texture2D>("Controls/Quit");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
 
-            var newGameButton = new Button(buttonTexture, buttonFont)
+            var playGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 200),
-                Text = "New Game",
+                Position = new Vector2(488, 200),
+                Text = "Play Game",
             };
 
-            newGameButton.Click += NewGameButton_Click;
+            playGameButton.Click += NewGameButton_Click;
 
-            var loadGameButton = new Button(buttonTexture, buttonFont)
+            var characterSelectButton = new Button(characterSelectTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
+                Position = new Vector2(533, 320),
                 Text = "Load Game",
             };
 
-            loadGameButton.Click += LoadGameButton_Click;
+            characterSelectButton.Click += LoadGameButton_Click;
 
-            var quitGameButton = new Button(buttonTexture, buttonFont)
+            var connectButton = new Button(connectTexture, buttonFont)
             {
-                Position = new Vector2(300, 300),
+                Position = new Vector2(533, 420),
+                Text = "Connect"
+            };
+
+            //connectButton.Click += ConnectButton_Click; //NOT IMPLEMENTED YET
+
+            var quitGameButton = new Button(quitTexture, buttonFont)
+            {
+                Position = new Vector2(533, 520),
                 Text = "Quit Game",
             };
 
             quitGameButton.Click += QuitGameButton_Click;
 
             _components = new List<Component>()
-      {
-        newGameButton,
-        loadGameButton,
-        quitGameButton,
-      };
+            {
+                backgroundBackground,
+                playGameButton,
+                characterSelectButton,
+                connectButton,
+                quitGameButton,
+            };
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -58,6 +75,8 @@ namespace ThirteenthBellAlpha.States
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
+
+            //spriteBatch.Draw(backgroundTexture1, new Vector2(0, 0), new Rectangle(0, 0, 1366, 768), Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f); ;
 
             spriteBatch.End();
         }
@@ -74,7 +93,7 @@ namespace ThirteenthBellAlpha.States
 
         public override void PostUpdate(GameTime gameTime)
         {
-            // remove sprites if they're not needed
+            
         }
 
         public override void Update(GameTime gameTime)

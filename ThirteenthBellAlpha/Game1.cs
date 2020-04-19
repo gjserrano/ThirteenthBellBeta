@@ -26,6 +26,9 @@ namespace ThirteenthBellAlpha
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1366;
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
