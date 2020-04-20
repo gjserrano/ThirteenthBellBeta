@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ThirteenthBellAlpha.MobileAspects;
 
 namespace ThirteenthBellAlpha.Components
 {
@@ -13,6 +14,8 @@ namespace ThirteenthBellAlpha.Components
         #region Fields
 
         private Texture2D _texture;
+
+        SpriteSheet test;
 
         #endregion
 
