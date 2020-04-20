@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using ThirteenthBellAlpha.Controls;
+using ThirteenthBellAlpha.Components;
+using ThirteenthBellAlpha.Components.Controls;
 
 namespace ThirteenthBellAlpha.States
 {
     public class MenuState : State
     {
         private List<Component> _components;
-        public Texture2D backgroundTexture1;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            backgroundTexture1 = _content.Load<Texture2D>("Menu Backgrounds/1");
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/1");
             var backgroundBackground = new Background(backgroundTexture);
 
@@ -84,6 +83,7 @@ namespace ThirteenthBellAlpha.States
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Game");
+            _game.ChangeState(new CharacterSelectState(_game, _graphicsDevice, _content));
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)

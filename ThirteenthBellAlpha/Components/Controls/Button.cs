@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThirteenthBellAlpha.Controls
+namespace ThirteenthBellAlpha.Components.Controls
 {
     public class Button : Component
     {

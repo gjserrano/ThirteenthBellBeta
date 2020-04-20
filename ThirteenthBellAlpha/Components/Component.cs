@@ -6,7 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThirteenthBellAlpha
+/// <summary>
+/// Components are the different non-gameplay entities contained within the project.
+/// Components include the main menu buttons, menu backgrounds, and other menu related 
+/// accessories.
+/// </summary>
+namespace ThirteenthBellAlpha.Components
 {
     public abstract class Component
     {
