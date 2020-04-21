@@ -15,19 +15,23 @@ namespace ThirteenthBellAlpha.Components
 
         private Texture2D _texture;
 
-        SpriteSheet test;
+        readonly Texture2D _playerTexture;
+
+        readonly SpriteSheet test;
+
+        PlayerAnimTesting testPlayer;
 
         #endregion
 
         #region Properties
 
-        public Vector2 position { get; set; }
+        public Vector2 Position { get; set; }
 
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
             }
         }
 
@@ -35,14 +39,21 @@ namespace ThirteenthBellAlpha.Components
 
         #region Methods
 
-        public CharacterTile(Texture2D texture)
+        public CharacterTile(Texture2D texture, Texture2D playerTexture)
         {
             _texture = texture;
+            _playerTexture = playerTexture;
+
+            test = new SpriteSheet(_playerTexture, 86, 107, 0, 0);
+
+            var testPlayerFrames = from index in Enumerable.Range(0, 9) select test[index];
+            testPlayer = new PlayerAnimTesting(testPlayerFrames);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f); ;
+            spriteBatch.Draw(_texture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
+            testPlayer.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)

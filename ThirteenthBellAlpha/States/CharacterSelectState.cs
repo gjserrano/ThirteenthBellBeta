@@ -17,65 +17,66 @@ namespace ThirteenthBellAlpha.States
         public CharacterSelectState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var characterPlateTexture = _content.Load<Texture2D>("Character Select/Character Slot");
+            var characterTestTexture = _content.Load<Texture2D>("Character Sheets/Ninja M");
 
-            var characterPlate1 = new CharacterTile(characterPlateTexture)
+            var characterPlate1 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(333, 100)
+                Position = new Vector2(333, 100)
             };
 
-            var characterPlate2 = new CharacterTile(characterPlateTexture)
+            var characterPlate2 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(533, 100)
+                Position = new Vector2(533, 100)
             };
 
-            var characterPlate3 = new CharacterTile(characterPlateTexture)
+            var characterPlate3 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(733, 100)
+                Position = new Vector2(733, 100)
             };
 
-            var characterPlate4 = new CharacterTile(characterPlateTexture)
+            var characterPlate4 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(933, 100)
+                Position = new Vector2(933, 100)
             };
 
-           var characterPlate5 = new CharacterTile(characterPlateTexture)
+           var characterPlate5 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(333, 250)
+                Position = new Vector2(333, 250)
             };
 
-            var characterPlate6 = new CharacterTile(characterPlateTexture)
+            var characterPlate6 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(533, 250)
+                Position = new Vector2(533, 250)
             };
 
-            var characterPlate7 = new CharacterTile(characterPlateTexture)
+            var characterPlate7 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(733, 250)
+                Position = new Vector2(733, 250)
             };
 
-            var characterPlate8 = new CharacterTile(characterPlateTexture)
+            var characterPlate8 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(933, 250)
+                Position = new Vector2(933, 250)
             };
 
-            var characterPlate9 = new CharacterTile(characterPlateTexture)
+            var characterPlate9 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(333, 400)
+                Position = new Vector2(333, 400)
             };
 
-            var characterPlate10 = new CharacterTile(characterPlateTexture)
+            var characterPlate10 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(533, 400)
+                Position = new Vector2(533, 400)
             };
 
-            var characterPlate11 = new CharacterTile(characterPlateTexture)
+            var characterPlate11 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(733, 400)
+                Position = new Vector2(733, 400)
             };
 
-            var characterPlate12 = new CharacterTile(characterPlateTexture)
+            var characterPlate12 = new CharacterTile(characterPlateTexture, characterTestTexture)
             {
-                position = new Vector2(933, 400)
+                Position = new Vector2(933, 400)
             };
 
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/2");

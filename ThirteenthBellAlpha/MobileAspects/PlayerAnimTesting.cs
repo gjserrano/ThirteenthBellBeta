@@ -29,6 +29,7 @@ namespace ThirteenthBellAlpha.MobileAspects
     /// </summary>
     public class PlayerAnimTesting
     {
+        #region Properties
         // The speed of the walking animation
         const int FRAME_RATE = 100;
 
@@ -36,7 +37,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         const int JUMP_TIME = 500;
 
         // The player sprite frames
-        Sprite[] frames;
+        readonly Sprite[] frames;
 
         // The currently rendered frame
         int currentFrame = 0;
@@ -45,7 +46,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         PlayerAnimState animationState = PlayerAnimState.Idle;
 
         // The player's speed
-        int speed = 5;
+        readonly int speed = 5;
 
         // A timer for animations
         TimeSpan animationTimer;
@@ -65,6 +66,9 @@ namespace ThirteenthBellAlpha.MobileAspects
         public Vector2 Position = new Vector2(200, 50);
 
         //public BoundingRectangle Bounds => new BoundingRectangle(Position - 1.8f * origin, 79, 85);
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Constructs a new player
@@ -157,6 +161,8 @@ namespace ThirteenthBellAlpha.MobileAspects
         {
             frames[currentFrame].Draw(spriteBatch, Position, color, 0, origin, 2, spriteEffects, 1);
         }
+
+        #endregion
 
     }
 }

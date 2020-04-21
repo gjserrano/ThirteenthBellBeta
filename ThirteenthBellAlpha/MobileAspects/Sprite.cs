@@ -17,7 +17,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         private Rectangle source;
 
         // The sprite's texture
-        private Texture2D texture;
+        readonly private Texture2D _texture;
 
         /// <summary>
         /// Gets the sprite's width
@@ -37,7 +37,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// <param name="texture"></param>
         public Sprite(Rectangle source, Texture2D texture)
         {
-            this.texture = texture;
+            this._texture = texture;
             this.source = source;
         }
 
@@ -55,7 +55,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// <param name="layerDepth">The sorting layer of the sprite</param>
         public void Draw(SpriteBatch spriteBatch, Rectangle destinationRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
         {
-            spriteBatch.Draw(texture, destinationRectangle, source, color, rotation, origin, effects, layerDepth);
+            spriteBatch.Draw(_texture, destinationRectangle, source, color, rotation, origin, effects, layerDepth);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// <param name="color">The color</param>
         public void Draw(SpriteBatch spriteBatch, Rectangle destinationRectangle, Color color)
         {
-            spriteBatch.Draw(texture, destinationRectangle, source, color);
+            spriteBatch.Draw(_texture, destinationRectangle, source, color);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// <param name="color">The color</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
         {
-            spriteBatch.Draw(texture, position, source, color);
+            spriteBatch.Draw(_texture, position, source, color);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// <param name="layerDepth">The sorting layer of the sprite</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
         {
-            spriteBatch.Draw(texture, position, source, color, rotation, origin, scale, effects, layerDepth);
+            spriteBatch.Draw(_texture, position, source, color, rotation, origin, scale, effects, layerDepth);
         }
     }
 }
