@@ -49,6 +49,7 @@
     <Compile Include="MobileAspects\PlayerAnimTesting.cs" />
     <Compile Include="MobileAspects\Sprite.cs" />
     <Compile Include="MobileAspects\SpriteSheet.cs" />
+    <Compile Include="MobileAspects\UserInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\CharacterSelectState.cs" />
