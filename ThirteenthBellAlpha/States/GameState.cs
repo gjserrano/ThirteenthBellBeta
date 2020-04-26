@@ -15,7 +15,7 @@ namespace ThirteenthBellAlpha.States
     public class GameState : State
     {
         private List<Component> _components;
-
+        
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -40,7 +40,9 @@ namespace ThirteenthBellAlpha.States
                 background,
                 userInterface,
                 laneSet
-            };
+            };   
+          
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -65,7 +67,7 @@ namespace ThirteenthBellAlpha.States
 
         public override void Update(GameTime gameTime)
         {
-
+            
         }
     }
 }

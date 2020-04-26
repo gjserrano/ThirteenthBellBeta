@@ -42,7 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\Background.cs" />
+    <Compile Include="Components\BoundingRectangle.cs" />
     <Compile Include="Components\CharacterTile.cs" />
+    <Compile Include="Components\Collisions.cs" />
     <Compile Include="Components\Controls\Button.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Lanes\Lane.cs" />
