@@ -15,8 +15,8 @@ namespace ThirteenthBellAlpha.States
     public class GameState : State
     {
         private List<Component> _components;
-        
 
+        Player player;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
@@ -40,9 +40,11 @@ namespace ThirteenthBellAlpha.States
                 background,
                 userInterface,
                 laneSet
-            };   
-          
+            };
 
+            player = new Player(game);
+            player.LoadContent(content);
+            player.Initialize(180, 300);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -56,7 +58,7 @@ namespace ThirteenthBellAlpha.States
             {
                 component.Draw(gameTime, spriteBatch);
             }
-
+            player.Draw(spriteBatch);
             spriteBatch.End();
         }
 
@@ -67,7 +69,7 @@ namespace ThirteenthBellAlpha.States
 
         public override void Update(GameTime gameTime)
         {
-            
+            player.Update(gameTime);
         }
     }
 }

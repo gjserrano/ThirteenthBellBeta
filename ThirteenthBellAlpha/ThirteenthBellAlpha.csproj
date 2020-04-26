@@ -51,6 +51,7 @@
     <Compile Include="Components\Lanes\LaneSet.cs" />
     <Compile Include="Components\Lanes\LaneTile.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="MobileAspects\Player.cs" />
     <Compile Include="MobileAspects\PlayerAnimTesting.cs" />
     <Compile Include="MobileAspects\Sprite.cs" />
     <Compile Include="MobileAspects\SpriteSheet.cs" />
