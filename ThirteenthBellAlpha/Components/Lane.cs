@@ -10,22 +10,19 @@ namespace ThirteenthBellAlpha.Components
 {
     class Lane : Component
     {
-        Texture2D topTexture;
-        Texture2D bottomTexture;
+     
+        List<LaneTile> compiledLane = new List<LaneTile>();
 
-        List<LaneTile> compiledLane;
-
-        public Lane(LaneTile top, List<LaneTile> laneTiles, LaneTile bottom, Texture2D tTexture, Texture2D bTexture)
+        public Lane(int laneNum, Texture2D laneTileTexture, Texture2D bottomTileTexture, Texture2D topTileTexture, int numLanes)
         {
-            topTexture = tTexture;
-            bottomTexture = bTexture;
+            compiledLane.Add(new LaneTile(topTileTexture) { position = new Vector2((laneNum * 182) + 227, 160) });
 
-            top = new LaneTile(topTexture);
-            bottom = new LaneTile(bottomTexture);
+            for(int i = 0; i < numLanes; i++)
+            {
+                compiledLane.Add(new LaneTile(laneTileTexture) { position = new Vector2((laneNum * 182) + 227, ((i + 1) * 64) + 160) });
+            }
 
-            compiledLane.Add(top);
-            compiledLane.AddRange(laneTiles);
-            compiledLane.Add(bottom);
+            compiledLane.Add(new LaneTile(bottomTileTexture) { position = new Vector2((laneNum * 182) + 227, ((numLanes + 1) * 64) + 160) });
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

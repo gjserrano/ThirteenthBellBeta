@@ -10,7 +10,7 @@ namespace ThirteenthBellAlpha.Components
 {
     class LaneTile : Component
     {
-        Vector2 position { get; set; }
+        public Vector2 position { get; set; }
 
         private Texture2D _texture;
 
@@ -18,7 +18,7 @@ namespace ThirteenthBellAlpha.Components
         {
             get
             {
-                return new Rectangle(0, 0, _texture.Width, _texture.Height);
+                return new Rectangle((int)position.X, (int)position.Y, _texture.Width, _texture.Height);
             }
         }
 
