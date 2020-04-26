@@ -32,6 +32,7 @@ namespace ThirteenthBellAlpha.States
                 enemyLifeText = "Test Text"
             };
 
+            /*
             var darkLaneTileTexture = _content.Load<Texture2D>("Lane/Dark/Dark Center");
             var darkLaneTopTexture = _content.Load<Texture2D>("Lane/Dark/Dark Top");
             var darkLaneBottomTexture = _content.Load<Texture2D>("Lane/Dark/Dark Bottom");
@@ -56,17 +57,20 @@ namespace ThirteenthBellAlpha.States
             var dirtLane = new Lane(1, dirtLaneTileTexture, dirtLaneBottomTexture, dirtLaneTopTexture, 5);
             var grassLane = new Lane(2, grassLaneTileTexture, grassLaneBottomTexture, grassLaneTopTexture, 5);
             var iceLane = new Lane(3, iceLaneTileTexture, iceLaneBottomTexture, iceLaneTopTexture, 5);
-            var sandLane = new Lane(4, sandLaneTileTexture, sandLaneBottomTexture, sandLaneTopTexture, 5);
+            var sandLane = new Lane(4, sandLaneTileTexture, sandLaneBottomTexture, sandLaneTopTexture, 5); */
+
+            LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
             _components = new List<Component>
             {
                 background,
                 userInterface,
-                darkLane,
-                dirtLane,
-                grassLane,
-                iceLane,
-                sandLane
+                //darkLane,
+                //dirtLane,
+                //grassLane,
+                //iceLane,
+                //sandLane
+                laneSet
             };
         }
 
