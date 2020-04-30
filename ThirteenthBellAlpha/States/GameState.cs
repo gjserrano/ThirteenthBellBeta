@@ -41,13 +41,18 @@ namespace ThirteenthBellAlpha.States
             Stack stack = new Stack(_content, 30, 0);
             Stack enemyStack = new Stack(_content, 30, 1);
 
+            PlayableCards playerHand = new PlayableCards(5, stack, 0);
+            PlayableCards enemyHand = new PlayableCards(5, enemyStack, 1);
+
             _components = new List<Component>
             {
                 background,
                 userInterface,
                 laneSet,
                 stack,
-                enemyStack
+                enemyStack,
+                playerHand,
+                enemyHand
             };
 
             player = new PlayerSouth(game);

@@ -17,31 +17,72 @@ namespace ThirteenthBellAlpha.Cards
 
         Card card;
 
-        public CardSlot(int slotID, Card heldCard)
+        Rectangle Rectangle
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y, card.cardTexture.Width, card.cardTexture.Height);
+            }
+        }
+
+        public CardSlot(int slotID, Card heldCard, int sideID)
         {
             id = slotID;
             card = heldCard;
 
-            switch(id)
+
+            if (sideID == 0)
             {
-                case 0:
-                    position = new Vector2(100, 600);
-                    break;
-                case 1:
-                    position = new Vector2(200, 600);
-                    break;
-                case 3:
-                    position = new Vector2(300, 600);
-                    break;
-                case 4:
-                    position = new Vector2(300, 600);
-                    break;
+                switch (id)
+                {
+                    case 0:
+                        position = new Vector2(450, 675);
+                        break;
+                    case 1:
+                        position = new Vector2(550, 675);
+                        break;
+                    case 2:
+                        position = new Vector2(650, 675);
+                        break;
+                    case 3:
+                        position = new Vector2(750, 675);
+                        break;
+                    case 4:
+                        position = new Vector2(850, 675);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            else
+            {
+                switch (id)
+                {
+                    case 0:
+                        position = new Vector2(450, 20);
+                        break;
+                    case 1:
+                        position = new Vector2(550, 20);
+                        break;
+                    case 2:
+                        position = new Vector2(650, 20);
+                        break;
+                    case 3:
+                        position = new Vector2(750, 20);
+                        break;
+                    case 4:
+                        position = new Vector2(850, 20);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(card.cardTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
         }
 
         public override void Update(GameTime gameTime)

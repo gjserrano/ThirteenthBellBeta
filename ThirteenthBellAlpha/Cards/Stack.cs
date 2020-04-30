@@ -16,13 +16,22 @@ namespace ThirteenthBellAlpha.Cards
 
         public Stack(ContentManager _content, int stackSize, int UD)
         {
-            var testCardTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Basic Card");
+            Random rand = new Random();
+            Random enemyRand = new Random();
+
+            List<Texture2D> textureList = new List<Texture2D>();
+
+            var commonDarkBasicTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Basic Card"); textureList.Add(commonDarkBasicTexture);
+            var commonDarkCrystalTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Crystal Card"); textureList.Add(commonDarkCrystalTexture);
+            var commonDarkLargeTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Large Card"); textureList.Add(commonDarkLargeTexture);
+            var commonDarkMediumTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Medium Card"); textureList.Add(commonDarkMediumTexture);
 
             if(UD == 0) //Creates stack for player
             {
                 for (int i = 0; i < stackSize; i++)
                 {
-                    stack.Push(new Card(testCardTexture, new Vector2(stack.Count + 10, 622)));
+                    int index = rand.Next(textureList.Count);
+                    stack.Push(new Card(textureList[index], new Vector2(stack.Count + 10, 622)));
                 }
             }
 
@@ -30,10 +39,10 @@ namespace ThirteenthBellAlpha.Cards
             {
                 for (int i = 0; i < stackSize; i++)
                 {
-                    stack.Push(new Card(testCardTexture, new Vector2(stack.Count + 10, 57)));
+                    int index = enemyRand.Next(textureList.Count);
+                    stack.Push(new Card(textureList[index], new Vector2(stack.Count + 10, 57)));
                 }
             }
-            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

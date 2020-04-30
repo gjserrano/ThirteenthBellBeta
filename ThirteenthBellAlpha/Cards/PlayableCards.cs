@@ -11,20 +11,23 @@ namespace ThirteenthBellAlpha.Cards
 {
     class PlayableCards : Component
     {
-        List<CardSlot> hand;
+        List<CardSlot> hand = new List<CardSlot>();
 
-        public PlayableCards(int handSize, Stack stack)
+        public PlayableCards(int handSize, Stack stack, int id)
         {
             for(int i = 0; i < handSize; i++)
             {
                 Card holder = stack.stack.Pop();
-                hand.Add(new CardSlot(i, holder));
+                hand.Add(new CardSlot(i, holder, id));
             }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            foreach(var cards in hand)
+            {
+                cards.Draw(gameTime, spriteBatch);
+            }
         }
 
         public override void Update(GameTime gameTime)
