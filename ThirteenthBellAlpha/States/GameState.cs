@@ -38,14 +38,16 @@ namespace ThirteenthBellAlpha.States
 
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
-            Stack stack = new Stack(_content, 30);
+            Stack stack = new Stack(_content, 30, 0);
+            Stack enemyStack = new Stack(_content, 30, 1);
 
             _components = new List<Component>
             {
                 background,
                 userInterface,
                 laneSet,
-                stack
+                stack,
+                enemyStack
             };
 
             player = new PlayerSouth(game);

@@ -11,7 +11,7 @@ namespace ThirteenthBellAlpha.Cards
 {
     class Card : Component
     {
-        Texture2D cardTexture;
+        public Texture2D cardTexture;
 
         Vector2 position { get; set; }
 

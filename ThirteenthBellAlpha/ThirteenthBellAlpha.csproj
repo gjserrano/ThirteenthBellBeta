@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\CardSlot.cs" />
+    <Compile Include="Cards\PlayableCards.cs" />
     <Compile Include="Cards\Stack.cs" />
     <Compile Include="Components\Background.cs" />
     <Compile Include="Components\BoundingRectangle.cs" />

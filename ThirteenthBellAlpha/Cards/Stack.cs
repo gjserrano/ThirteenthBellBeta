@@ -12,16 +12,28 @@ namespace ThirteenthBellAlpha.Cards
 {
     class Stack : Component
     {
-        Stack<Card> stack = new Stack<Card>();
+        public Stack<Card> stack = new Stack<Card>();
 
-        public Stack(ContentManager _content, int stackSize)
+        public Stack(ContentManager _content, int stackSize, int UD)
         {
             var testCardTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Basic Card");
 
-            for(int i = 0; i < stackSize; i++)
+            if(UD == 0) //Creates stack for player
             {
-                stack.Push(new Card(testCardTexture, new Vector2(stack.Count + 10, 400)));
+                for (int i = 0; i < stackSize; i++)
+                {
+                    stack.Push(new Card(testCardTexture, new Vector2(stack.Count + 10, 622)));
+                }
             }
+
+            else //Creates stack for enemy
+            {
+                for (int i = 0; i < stackSize; i++)
+                {
+                    stack.Push(new Card(testCardTexture, new Vector2(stack.Count + 10, 57)));
+                }
+            }
+            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
