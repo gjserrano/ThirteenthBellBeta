@@ -19,6 +19,7 @@ namespace ThirteenthBellAlpha.States
 
         PlayerSouth player;
         PlayerNorth player2;
+        PlayableCards playerHand;
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -41,7 +42,7 @@ namespace ThirteenthBellAlpha.States
             Stack stack = new Stack(_content, 30, 0);
             Stack enemyStack = new Stack(_content, 30, 1);
 
-            PlayableCards playerHand = new PlayableCards(5, stack, 0);
+            playerHand = new PlayableCards(5, stack, 0);
             PlayableCards enemyHand = new PlayableCards(5, enemyStack, 1);
 
             _components = new List<Component>
@@ -88,6 +89,7 @@ namespace ThirteenthBellAlpha.States
         {
             player.Update(gameTime);
             player2.Update(gameTime);
+            playerHand.Update(gameTime);
         }
     }
 }

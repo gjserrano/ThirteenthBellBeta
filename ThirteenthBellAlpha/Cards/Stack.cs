@@ -12,7 +12,7 @@ namespace ThirteenthBellAlpha.Cards
 {
     class Stack : Component
     {
-        public Stack<Card> stack = new Stack<Card>();
+        public Queue<Card> stack = new Queue<Card>();
 
         public Stack(ContentManager _content, int stackSize, int UD)
         {
@@ -31,7 +31,7 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = rand.Next(textureList.Count);
-                    stack.Push(new Card(textureList[index], new Vector2(stack.Count + 10, 622)));
+                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 622)));
                 }
             }
 
@@ -40,7 +40,7 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = enemyRand.Next(textureList.Count);
-                    stack.Push(new Card(textureList[index], new Vector2(stack.Count + 10, 57)));
+                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 57)));
                 }
             }
         }
