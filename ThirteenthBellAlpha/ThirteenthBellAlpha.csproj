@@ -41,6 +41,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\Stack.cs" />
     <Compile Include="Components\Background.cs" />
     <Compile Include="Components\BoundingRectangle.cs" />
     <Compile Include="Components\CharacterTile.cs" />

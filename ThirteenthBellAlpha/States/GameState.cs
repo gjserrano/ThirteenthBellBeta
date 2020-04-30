@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using ThirteenthBellAlpha.Cards;
 using ThirteenthBellAlpha.Components;
 using ThirteenthBellAlpha.Components.Lanes;
 using ThirteenthBellAlpha.MobileAspects;
@@ -18,6 +19,7 @@ namespace ThirteenthBellAlpha.States
 
         PlayerSouth player;
         PlayerNorth player2;
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
@@ -36,11 +38,14 @@ namespace ThirteenthBellAlpha.States
 
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
+            Stack stack = new Stack(_content, 30);
+
             _components = new List<Component>
             {
                 background,
                 userInterface,
-                laneSet
+                laneSet,
+                stack
             };
 
             player = new PlayerSouth(game);
