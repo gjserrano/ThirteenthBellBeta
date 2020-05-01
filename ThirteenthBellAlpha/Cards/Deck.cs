@@ -10,11 +10,11 @@ using ThirteenthBellAlpha.Components;
 
 namespace ThirteenthBellAlpha.Cards
 {
-    class Stack : Component
+    class Deck : Component
     {
-        public Queue<Card> stack = new Queue<Card>();
+        public Stack<Card> deck = new Stack<Card>();
 
-        public Stack(ContentManager _content, int stackSize, int UD)
+        public Deck(ContentManager _content, int stackSize, int UD)
         {
             Random rand = new Random();
             Random enemyRand = new Random();
@@ -31,32 +31,28 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = rand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 622)));
-                    //stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count * 40, 422)));
+                    //deck.Push(new Card(textureList[index], new Vector2(deck.Count + 10, 622)));
+                    deck.Push(new Card(textureList[index], new Vector2(deck.Count * 50, 400)));
                 }
             }
 
             else //Creates stack for enemy
             {
-                for (int i = 0; i < stackSize; i++)
+                for (int i = stackSize; i > 0; i--)
                 {
                     int index = enemyRand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 57)));
+                    deck.Push(new Card(textureList[index], new Vector2(deck.Count + 10, 57)));
                 }
             }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach(var card in stack)
+            
+            for(int i = deck.Count - 1; i > 0; i--)
             {
-                card.Draw(gameTime, spriteBatch);
+                deck.ElementAt(i).Draw(gameTime, spriteBatch);
             }
-
-            /**for(int i = stack.Count - 1; i > 0; i--)
-            {
-                stack.ElementAt(i).Draw(gameTime, spriteBatch);
-            }**/
         }
 
         public override void Update(GameTime gameTime)

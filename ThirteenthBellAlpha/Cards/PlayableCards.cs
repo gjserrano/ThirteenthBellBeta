@@ -27,6 +27,7 @@ namespace ThirteenthBellAlpha.Cards
             for(int i = 0; i < handSize; i++)
             {
                 Card holder = playerStack.stack.Peek();
+                playerStack.stack.Dequeue();
                 hand[i] = (new CardSlot(i, holder, id));
             }
         }
