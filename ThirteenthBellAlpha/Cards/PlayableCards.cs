@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ThirteenthBellAlpha.Components;
+using ThirteenthBellAlpha.Projectile;
 
 namespace ThirteenthBellAlpha.Cards
 {
@@ -18,17 +19,20 @@ namespace ThirteenthBellAlpha.Cards
         private KeyboardState _previousKeyboardState;
 
         Stack playerStack;
+        public  List<BasicRotating> _projectiles;
 
         public PlayableCards(int handSize, Stack stack, int id)
         {
             hand = new CardSlot[handSize];
             playerStack = stack;
+            _projectiles = new List<BasicRotating>();
 
             for(int i = 0; i < handSize; i++)
             {
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[i] = (new CardSlot(i, holder, id));
+                _projectiles.Add(new BasicRotating(hand[i].card.projectileTexture, .15f, 20, 2));
             }
         }
 
@@ -38,6 +42,7 @@ namespace ThirteenthBellAlpha.Cards
 
             if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playerStack.stack.Count > 0) 
             {
+                _projectiles.Add(new BasicRotating(hand[1].card.projectileTexture, .15f, 20, 2));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[0] = new CardSlot(0, holder, 0);
@@ -71,6 +76,11 @@ namespace ThirteenthBellAlpha.Cards
                 hand[4] = new CardSlot(4, holder, 0);
             }
 
+            foreach(var ammo in _projectiles)
+            {
+                ammo.Update(gameTime);
+            }
+
             _previousKeyboardState = _currentKeyboardState;
         }
 
@@ -79,6 +89,11 @@ namespace ThirteenthBellAlpha.Cards
             foreach (var cards in hand)
             {
                 cards.Draw(gameTime, spriteBatch);
+            }
+
+            foreach (var ammo in _projectiles)
+            {
+                ammo.Draw(gameTime, spriteBatch);
             }
         }
     }

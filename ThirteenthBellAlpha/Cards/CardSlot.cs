@@ -15,7 +15,7 @@ namespace ThirteenthBellAlpha.Cards
 
         int id;
 
-        Card card;
+        public Card card;
 
         Rectangle Rectangle
         {

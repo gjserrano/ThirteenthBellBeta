@@ -62,6 +62,10 @@
     <Compile Include="MobileAspects\SpriteSheet.cs" />
     <Compile Include="MobileAspects\UserInterface.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projectile\BasicRotating.cs" />
+    <Compile Include="Projectile\Projectile.cs" />
+    <Compile Include="Projectile\Shield.cs" />
+    <Compile Include="Projectile\SpecialAnimated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\CharacterSelectState.cs" />
     <Compile Include="States\GameState.cs" />
@@ -82,6 +86,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
