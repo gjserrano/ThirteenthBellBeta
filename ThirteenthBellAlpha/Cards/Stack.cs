@@ -26,12 +26,16 @@ namespace ThirteenthBellAlpha.Cards
             var commonDarkLargeTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Large Card"); textureList.Add(commonDarkLargeTexture);
             var commonDarkMediumTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Medium Card"); textureList.Add(commonDarkMediumTexture);
 
+            var commonCardBack1 = _content.Load<Texture2D>("Cards/Card Backs/Common/1");
+
+            var darkBasicProjTexture = _content.Load<Texture2D>("Projectiles/Dark/Dark Basic");
+
             if(UD == 0) //Creates stack for player
             {
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = rand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 622)));
+                    stack.Enqueue(new Card(textureList[index],commonCardBack1, darkBasicProjTexture, true, new Vector2(stack.Count + 10, 622)));
                     //stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count * 40, 422)));
                 }
             }
@@ -41,7 +45,7 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = enemyRand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count + 10, 57)));
+                    stack.Enqueue(new Card(textureList[index], commonCardBack1, darkBasicProjTexture, true, new Vector2(stack.Count + 10, 57)));
                 }
             }
         }

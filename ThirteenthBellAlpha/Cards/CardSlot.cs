@@ -21,7 +21,7 @@ namespace ThirteenthBellAlpha.Cards
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y, card.cardTexture.Width, card.cardTexture.Height);
+                return new Rectangle((int)position.X, (int)position.Y, card.faceTexture.Width, card.faceTexture.Height);
             }
         }
 
@@ -82,7 +82,7 @@ namespace ThirteenthBellAlpha.Cards
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(card.cardTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
+            spriteBatch.Draw(card.faceTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
         }
 
         public override void Update(GameTime gameTime)

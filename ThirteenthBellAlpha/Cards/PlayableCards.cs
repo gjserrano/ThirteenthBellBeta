@@ -36,11 +36,39 @@ namespace ThirteenthBellAlpha.Cards
         {
             _currentKeyboardState = Keyboard.GetState();
 
-            if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z)) 
+            if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playerStack.stack.Count > 0) 
             {
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[0] = new CardSlot(0, holder, 0);
+            }
+
+            else if(_currentKeyboardState.IsKeyDown(Keys.X) && _previousKeyboardState.IsKeyUp(Keys.X) && playerStack.stack.Count > 0)
+            {
+                Card holder = playerStack.stack.Peek();
+                playerStack.stack.Dequeue();
+                hand[1] = new CardSlot(1, holder, 0);
+            }
+
+            else if (_currentKeyboardState.IsKeyDown(Keys.C) && _previousKeyboardState.IsKeyUp(Keys.C) && playerStack.stack.Count > 0)
+            {
+                Card holder = playerStack.stack.Peek();
+                playerStack.stack.Dequeue();
+                hand[2] = new CardSlot(2, holder, 0);
+            }
+
+            else if (_currentKeyboardState.IsKeyDown(Keys.V) && _previousKeyboardState.IsKeyUp(Keys.V) && playerStack.stack.Count > 0)
+            {
+                Card holder = playerStack.stack.Peek();
+                playerStack.stack.Dequeue();
+                hand[3] = new CardSlot(3, holder, 0);
+            }
+
+            else if (_currentKeyboardState.IsKeyDown(Keys.B) && _previousKeyboardState.IsKeyUp(Keys.B) && playerStack.stack.Count > 0)
+            {
+                Card holder = playerStack.stack.Peek();
+                playerStack.stack.Dequeue();
+                hand[4] = new CardSlot(4, holder, 0);
             }
 
             _previousKeyboardState = _currentKeyboardState;
