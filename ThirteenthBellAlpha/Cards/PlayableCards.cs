@@ -45,7 +45,7 @@ namespace ThirteenthBellAlpha.Cards
 
             if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playerStack.stack.Count > 0) 
             {
-                _projectiles.Add(new BasicRotating(hand[1].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
+                _projectiles.Add(new BasicRotating(hand[0].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[0] = new CardSlot(0, holder, 0);
