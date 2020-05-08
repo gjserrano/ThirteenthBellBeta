@@ -53,6 +53,7 @@ namespace ThirteenthBellAlpha.Cards
 
             else if(_currentKeyboardState.IsKeyDown(Keys.X) && _previousKeyboardState.IsKeyUp(Keys.X) && playerStack.stack.Count > 0)
             {
+                _projectiles.Add(new BasicRotating(hand[1].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[1] = new CardSlot(1, holder, 0);
@@ -60,6 +61,7 @@ namespace ThirteenthBellAlpha.Cards
 
             else if (_currentKeyboardState.IsKeyDown(Keys.C) && _previousKeyboardState.IsKeyUp(Keys.C) && playerStack.stack.Count > 0)
             {
+                _projectiles.Add(new BasicRotating(hand[2].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[2] = new CardSlot(2, holder, 0);
@@ -67,6 +69,7 @@ namespace ThirteenthBellAlpha.Cards
 
             else if (_currentKeyboardState.IsKeyDown(Keys.V) && _previousKeyboardState.IsKeyUp(Keys.V) && playerStack.stack.Count > 0)
             {
+                _projectiles.Add(new BasicRotating(hand[3].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[3] = new CardSlot(3, holder, 0);
@@ -74,6 +77,7 @@ namespace ThirteenthBellAlpha.Cards
 
             else if (_currentKeyboardState.IsKeyDown(Keys.B) && _previousKeyboardState.IsKeyUp(Keys.B) && playerStack.stack.Count > 0)
             {
+                _projectiles.Add(new BasicRotating(hand[4].card.projectileTexture, .15f, 5, 2, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[4] = new CardSlot(4, holder, 0);

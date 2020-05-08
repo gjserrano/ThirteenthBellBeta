@@ -23,6 +23,8 @@ namespace ThirteenthBellAlpha.States
         PlayerNorth player2;
         PlayableCards playerHand;
 
+        UserInterface userInterface;
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
@@ -30,13 +32,17 @@ namespace ThirteenthBellAlpha.States
 
             var uiFont = _content.Load<SpriteFont>("Fonts/Font");
 
+            player2 = new PlayerNorth(game);
+            player2.LoadContent(content);
+            player2.Initialize(180, 300);
+
             var uiTexture = _content.Load<Texture2D>("Menu Backgrounds/ThirteenthBellUI_NoBackground");
-            UserInterface userInterface = new UserInterface(uiTexture, uiFont)
+            userInterface = new UserInterface(uiTexture, uiFont)
             {
                 playerStackText = "Test Text", //Hopefully we'll be able to plug in the different player stats for these
                 playerLifeText = "Test Text",
                 enemyStackText = "Test Text",
-                enemyLifeText = "Test Text"
+                enemyLifeText = Convert.ToString(player2.life)
             };
 
             player = new PlayerSouth(game);
@@ -63,9 +69,7 @@ namespace ThirteenthBellAlpha.States
             };
 
             
-            player2 = new PlayerNorth(game);
-            player2.LoadContent(content);
-            player2.Initialize(180, 300);
+            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -110,8 +114,10 @@ namespace ThirteenthBellAlpha.States
                 {
                     Console.WriteLine("hit registered");
                     playerHand._projectiles.Remove(playerHand._projectiles.ElementAt(i));
+                    player2.life -= 1;
+                    Console.WriteLine(System.Convert.ToString(player2.life));
+                    userInterface.enemyLifeText = Convert.ToString(player2.life);
                 }
-                
             }
         }
     }
