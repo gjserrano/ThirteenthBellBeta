@@ -11,11 +11,13 @@ using ThirteenthBellAlpha.Components;
 using ThirteenthBellAlpha.Components.Lanes;
 using ThirteenthBellAlpha.MobileAspects;
 
+
 namespace ThirteenthBellAlpha.States
 {
     public class GameState : State
     {
         private List<Component> _components;
+
 
         PlayerSouth player;
         PlayerNorth player2;
@@ -37,13 +39,17 @@ namespace ThirteenthBellAlpha.States
                 enemyLifeText = "Test Text"
             };
 
+            player = new PlayerSouth(game);
+            player.LoadContent(content);
+            player.Initialize(180, 300);
+
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
             Stack stack = new Stack(_content, 30, 0);
             Stack enemyStack = new Stack(_content, 30, 1);
 
-            playerHand = new PlayableCards(5, stack, 0);
-            PlayableCards enemyHand = new PlayableCards(5, enemyStack, 1);
+            playerHand = new PlayableCards(5, stack, 0, player);
+            //PlayableCards enemyHand = new PlayableCards(5, enemyStack, 1);
 
             _components = new List<Component>
             {
@@ -53,12 +59,10 @@ namespace ThirteenthBellAlpha.States
                 stack,
                 enemyStack,
                 playerHand,
-                enemyHand
+                //enemyHand
             };
 
-            player = new PlayerSouth(game);
-            player.LoadContent(content);
-            player.Initialize(180, 300);
+            
             player2 = new PlayerNorth(game);
             player2.LoadContent(content);
             player2.Initialize(180, 300);
@@ -90,6 +94,25 @@ namespace ThirteenthBellAlpha.States
             player.Update(gameTime);
             player2.Update(gameTime);
             playerHand.Update(gameTime);
+
+            /**foreach( var ammo in playerHand._projectiles)
+            {
+                if(Collisions.CollidesWith(ammo.Bounds, player2.Bounds))
+                {
+                    Console.WriteLine("hit registered");
+                    playerHand._projectiles.Remove(ammo);
+                }
+            }**/
+
+            for (int i = 0; i < playerHand._projectiles.Count; i++)
+            {
+                if(Collisions.CollidesWith(playerHand._projectiles.ElementAt(i).Bounds, player2.Bounds))
+                {
+                    Console.WriteLine("hit registered");
+                    playerHand._projectiles.Remove(playerHand._projectiles.ElementAt(i));
+                }
+                
+            }
         }
     }
 }

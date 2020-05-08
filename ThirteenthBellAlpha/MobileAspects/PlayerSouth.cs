@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ThirteenthBellAlpha.MobileAspects
 {
+
+
     enum PlayState
     {
         South = 2, //Waling South(down) is the 2 row

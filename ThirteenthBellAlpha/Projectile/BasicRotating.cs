@@ -23,7 +23,7 @@ namespace ThirteenthBellAlpha.Projectile
 
         //public PlayerSouth player;
 
-        public BasicRotating(Texture2D pTexture, float rSpeed, int pSpeed, int d  /**, PlayerSouth pOwner**/)
+        public BasicRotating(Texture2D pTexture, float rSpeed, int pSpeed, int d , int playerX, int playerY)
         {
             projectileTexture = pTexture;
             rotateSpeed = rSpeed;
@@ -33,20 +33,25 @@ namespace ThirteenthBellAlpha.Projectile
 
             Bounds.Width = projectileTexture.Width;
             Bounds.Height = projectileTexture.Height;
-            Bounds.X = 500;
-            Bounds.Y = 500;
+            Bounds.X = playerX;
+            Bounds.Y = playerY;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(projectileTexture, Bounds, Bounds, Color.White, angle, new Vector2(Bounds.X, Bounds.Y), SpriteEffects.None, 1);
+            Vector2 location = new Vector2(Bounds.X, Bounds.Y);
+            Rectangle sourceRectangle = new Rectangle(0, 0, projectileTexture.Width, projectileTexture.Height);
+            Vector2 origin = new Vector2(Bounds.Width/2, Bounds.Height/2);
+
+            spriteBatch.Draw(projectileTexture, location, sourceRectangle, Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
+
+            //spriteBatch.Draw(projectileTexture, Bounds, new Rectangle(500, 500, 50, 50), Color.White, angle, new Vector2(500, 500), SpriteEffects.None, 1);
         }
 
         public override void Update(GameTime gameTime)
         {
             Bounds.Y -= projectileSpeed;
             angle += rotateSpeed;
-
         }
     }
 }

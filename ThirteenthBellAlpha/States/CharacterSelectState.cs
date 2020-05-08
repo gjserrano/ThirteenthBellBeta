@@ -13,6 +13,7 @@ namespace ThirteenthBellAlpha.States
     class CharacterSelectState : State
     {
         public List<Component> _components;
+        public Texture2D characterTexture;
 
         public CharacterSelectState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {

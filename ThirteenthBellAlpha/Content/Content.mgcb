@@ -1321,6 +1321,18 @@
 /processorParam:TextureFormat=Color
 /build:Character Select/Character Slot.png
 
+#begin Character Sheets/Healer M.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Character Sheets/Healer M.png
+
 #begin Character Sheets/Ninja M.png
 /importer:TextureImporter
 /processor:TextureProcessor
