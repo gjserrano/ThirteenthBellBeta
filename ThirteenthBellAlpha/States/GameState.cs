@@ -23,10 +23,16 @@ namespace ThirteenthBellAlpha.States
         PlayerSouth player;
         PlayerNorth player2;
         PlayableCards playerHand;
+        int round;
+        int playerWins;
+        int enemyWins;
 
         UserInterface userInterface;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            round = 0;
+            playerWins = 0;
+            enemyWins = 0;
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
             Background background = new Background(backgroundTexture);
 
@@ -43,7 +49,10 @@ namespace ThirteenthBellAlpha.States
                 playerStackText = "Test Text", //Hopefully we'll be able to plug in the different player stats for these
                 playerLifeText = "Test Text",
                 enemyStackText = "Test Text",
-                enemyLifeText = Convert.ToString(player2.life)
+                enemyLifeText = Convert.ToString(player2.life),
+                roundText = round.ToString(),
+                playerText = playerWins.ToString(),
+                enemyText = enemyWins.ToString(),
             };
 
             player = new PlayerSouth(game);

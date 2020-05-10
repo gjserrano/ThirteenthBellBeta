@@ -72,7 +72,10 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         public string enemyStackText { get; set; }
         public string enemyLifeText { get; set; }
-      
+        public string roundText { get; set; }
+        public string playerText { get; set; }
+        public string enemyText { get; set; }
+
 
         public UserInterface(Texture2D textureUI, SpriteFont fontUI) 
         {
@@ -115,7 +118,10 @@ namespace ThirteenthBellAlpha.MobileAspects
 
                 spriteBatch.DrawString(font, enemyLifeText, new Vector2(x, y), Color.Black);
             }
-            spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(200, 100), Color.Black);
+            spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(200, 80), Color.Black);
+            spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(200, 100), Color.Black);
+            spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(200, 120), Color.Black);
+            spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(200, 140), Color.Black);
         }
         float timer;
         int timecounter = 30;
