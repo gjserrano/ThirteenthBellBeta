@@ -17,6 +17,8 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         Vector2 position { get; set; }
 
+
+
         Rectangle Rectangle
         {
             get
@@ -57,11 +59,20 @@ namespace ThirteenthBellAlpha.MobileAspects
             }
         }
 
+        Rectangle timerRectangle
+        {
+            get
+            {
+                return new Rectangle(1100, 47, 115, 90);
+            }
+        }
+
         public string playerStackText { get; set; }
         public string playerLifeText { get; set; }
 
         public string enemyStackText { get; set; }
         public string enemyLifeText { get; set; }
+      
 
         public UserInterface(Texture2D textureUI, SpriteFont fontUI) 
         {
@@ -72,7 +83,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
-
+     
             if (!string.IsNullOrEmpty(playerStackText))
             {
                 var x = (playerStackRectangle.X + (playerStackRectangle.Width / 2)) - (font.MeasureString(playerStackText).X / 2);
@@ -104,11 +115,17 @@ namespace ThirteenthBellAlpha.MobileAspects
 
                 spriteBatch.DrawString(font, enemyLifeText, new Vector2(x, y), Color.Black);
             }
+            spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(200, 100), Color.Black);
         }
+        float timer;
+        int timecounter = 30;
 
         public override void Update(GameTime gameTime)
         {
-
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timecounter -= (int)timer;
+            if (timer >= 1.0F) timer = 0F;
+            if (timecounter < 0) timecounter = 30;
         }
     }
 }

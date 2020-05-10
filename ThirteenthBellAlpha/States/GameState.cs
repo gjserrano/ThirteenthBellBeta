@@ -10,6 +10,7 @@ using ThirteenthBellAlpha.Cards;
 using ThirteenthBellAlpha.Components;
 using ThirteenthBellAlpha.Components.Lanes;
 using ThirteenthBellAlpha.MobileAspects;
+using System.Timers;
 
 
 namespace ThirteenthBellAlpha.States
@@ -18,19 +19,19 @@ namespace ThirteenthBellAlpha.States
     {
         private List<Component> _components;
 
-
+    
         PlayerSouth player;
         PlayerNorth player2;
         PlayableCards playerHand;
 
         UserInterface userInterface;
-
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
             Background background = new Background(backgroundTexture);
 
             var uiFont = _content.Load<SpriteFont>("Fonts/Font");
+
 
             player2 = new PlayerNorth(game);
             player2.LoadContent(content);
@@ -71,9 +72,11 @@ namespace ThirteenthBellAlpha.States
             
             
         }
+        
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            
             spriteBatch.Begin();
 
             //Start
@@ -85,6 +88,7 @@ namespace ThirteenthBellAlpha.States
             }
             player.Draw(spriteBatch);
             player2.Draw(spriteBatch);
+            
             spriteBatch.End();
         }
 
@@ -98,6 +102,11 @@ namespace ThirteenthBellAlpha.States
             player.Update(gameTime);
             player2.Update(gameTime);
             playerHand.Update(gameTime);
+            userInterface.Update(gameTime);
+
+            //int timecounter = 30;
+         
+
 
             /**foreach( var ammo in playerHand._projectiles)
             {
