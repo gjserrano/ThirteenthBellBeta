@@ -53,7 +53,7 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = enemyRand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], commonCardBack1, darkBasicProjTexture, true, new Vector2(stack.Count + 10, 57), projectileSpeedList[index] * -1, projectileDamageList[index]));
+                    stack.Enqueue(new Card(textureList[index], commonCardBack1, projectileList[index], true, new Vector2(stack.Count + 10, 622), projectileSpeedList[index] * -1, projectileDamageList[index]));
                 }
             }
         }
