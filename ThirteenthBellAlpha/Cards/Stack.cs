@@ -21,6 +21,8 @@ namespace ThirteenthBellAlpha.Cards
 
             List<Texture2D> textureList = new List<Texture2D>();
             List<Texture2D> projectileList = new List<Texture2D>();
+            List<int> projectileSpeedList = new List<int>();
+            List<int> projectileDamageList = new List<int>();
 
             var commonDarkBasicTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Basic Card"); textureList.Add(commonDarkBasicTexture);
             //var commonDarkCrystalTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Crystal Card"); textureList.Add(commonDarkCrystalTexture);
@@ -33,12 +35,15 @@ namespace ThirteenthBellAlpha.Cards
             var darkMediumProjTexture = _content.Load<Texture2D>("Projectiles/Dark/Dark Medium"); projectileList.Add(darkMediumProjTexture);
             var darkLargeProjTexture = _content.Load<Texture2D>("Projectiles/Dark/Dark Large");  projectileList.Add(darkLargeProjTexture);
 
+            projectileSpeedList.Add(15); projectileSpeedList.Add(5); projectileSpeedList.Add(10);
+            projectileDamageList.Add(1); projectileDamageList.Add(3); projectileDamageList.Add(2);
+
             if(UD == 0) //Creates stack for player
             {
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = rand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], commonCardBack1, projectileList[index], true, new Vector2(stack.Count + 10, 622)));
+                    stack.Enqueue(new Card(textureList[index], commonCardBack1, projectileList[index], true, new Vector2(stack.Count + 10, 622), projectileSpeedList[index], projectileDamageList[index]));
                     //stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count * 40, 422)));
                 }
             }
@@ -48,7 +53,7 @@ namespace ThirteenthBellAlpha.Cards
                 for (int i = 0; i < stackSize; i++)
                 {
                     int index = enemyRand.Next(textureList.Count);
-                    stack.Enqueue(new Card(textureList[index], commonCardBack1, darkBasicProjTexture, true, new Vector2(stack.Count + 10, 57)));
+                    stack.Enqueue(new Card(textureList[index], commonCardBack1, darkBasicProjTexture, true, new Vector2(stack.Count + 10, 57), projectileSpeedList[index], projectileDamageList[index]));
                 }
             }
         }

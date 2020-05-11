@@ -15,7 +15,7 @@ namespace ThirteenthBellAlpha.Projectile
 
         float rotateSpeed;
         int projectileSpeed;
-        int damage;
+        public int damage;
 
         float angle;
 

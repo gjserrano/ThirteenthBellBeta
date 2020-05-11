@@ -50,7 +50,7 @@ namespace ThirteenthBellAlpha.States
                 playerLifeText = "Test Text",
                 enemyStackText = "Test Text",
                 enemyLifeText = Convert.ToString(player2.life),
-                roundText = round.ToString(),
+                roundText = round,
                 playerText = playerWins.ToString(),
                 enemyText = enemyWins.ToString(),
             };
@@ -131,8 +131,8 @@ namespace ThirteenthBellAlpha.States
                 if(Collisions.CollidesWith(playerHand._projectiles.ElementAt(i).Bounds, player2.Bounds))
                 {
                     Console.WriteLine("hit registered");
+                    player2.life -= playerHand._projectiles.ElementAt(i).damage;
                     playerHand._projectiles.Remove(playerHand._projectiles.ElementAt(i));
-                    player2.life -= 1;
                     Console.WriteLine(System.Convert.ToString(player2.life));
                     userInterface.enemyLifeText = Convert.ToString(player2.life);
                 }

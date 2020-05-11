@@ -72,7 +72,7 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         public string enemyStackText { get; set; }
         public string enemyLifeText { get; set; }
-        public string roundText { get; set; }
+        public int roundText { get; set; }
         public string playerText { get; set; }
         public string enemyText { get; set; }
 
@@ -118,10 +118,10 @@ namespace ThirteenthBellAlpha.MobileAspects
 
                 spriteBatch.DrawString(font, enemyLifeText, new Vector2(x, y), Color.Black);
             }
-            spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(200, 80), Color.Black);
-            spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(200, 100), Color.Black);
-            spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(200, 120), Color.Black);
-            spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(200, 140), Color.Black);
+            spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(100, 350), Color.Black);
+            spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(1200, 300), Color.Black);
+            spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1200, 320), Color.Black);
+            spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(1200, 340), Color.Black);
         }
         float timer;
         int timecounter = 30;
@@ -131,7 +131,11 @@ namespace ThirteenthBellAlpha.MobileAspects
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             timecounter -= (int)timer;
             if (timer >= 1.0F) timer = 0F;
-            if (timecounter < 0) timecounter = 30;
+            if (timecounter < 0)
+            {
+                timecounter = 30;
+                roundText++;
+            }
         }
     }
 }

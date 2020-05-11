@@ -20,6 +20,9 @@ namespace ThirteenthBellAlpha.Cards
 
         public Texture2D drawTexture;
 
+        public int projectileSpeed;
+        public int projectileDamage;
+
         Vector2 position { get; set; }
 
         Rectangle Rectangle
@@ -30,13 +33,15 @@ namespace ThirteenthBellAlpha.Cards
             }
         }
 
-        public Card(Texture2D fTexture, Texture2D bTexture, Texture2D pTexture, bool cStatus, Vector2 cardPosition)
+        public Card(Texture2D fTexture, Texture2D bTexture, Texture2D pTexture, bool cStatus, Vector2 cardPosition, int pSpeed, int pDamage)
         {
             faceTexture = fTexture;
             backTexture = bTexture;
             projectileTexture = pTexture;
             faceOrBack = cStatus;
             position = cardPosition;
+            projectileSpeed = pSpeed;
+            projectileDamage = pDamage;
 
             if (faceOrBack)
                 drawTexture = backTexture;
