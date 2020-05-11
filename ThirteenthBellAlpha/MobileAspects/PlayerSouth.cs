@@ -71,6 +71,9 @@ namespace ThirteenthBellAlpha.MobileAspects
         int frame;
         PlayState state;
         TimeSpan timer;
+
+        public int life;
+
         /// <summary>
         /// Creates a paddle
         /// </summary>
@@ -95,7 +98,8 @@ namespace ThirteenthBellAlpha.MobileAspects
             Bounds.Height = 40;        
             Bounds.Y = 620;
             Bounds.X = borderDistance + count*offset;
-            
+
+            life = 30;
         }
 
         /// <summary>
