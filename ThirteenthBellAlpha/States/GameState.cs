@@ -146,10 +146,18 @@ namespace ThirteenthBellAlpha.States
                 if (Convert.ToInt16(userInterface.playerLifeText) > Convert.ToInt16(userInterface.enemyLifeText))
                 {
                     userInterface.playerText++;
+                    userInterface.playerLifeText = "30";
+                    userInterface.enemyLifeText = "30";
+                    player.life = 30;
+                    player2.life = 30;
                 }
                 else if (Convert.ToInt16(userInterface.enemyLifeText) > Convert.ToInt16(userInterface.playerLifeText))
                 {
                     userInterface.enemyText++;
+                    userInterface.playerLifeText = "30";
+                    userInterface.enemyLifeText = "30";
+                    player.life = 30;
+                    player2.life = 30;
                 }
 
                 userInterface.timecounter = 30;
@@ -164,6 +172,7 @@ namespace ThirteenthBellAlpha.States
                 userInterface.enemyLifeText = "30";
                 player.life = 30;
                 player2.life = 30;
+                
             }
 
             if (player2.life <= 0)

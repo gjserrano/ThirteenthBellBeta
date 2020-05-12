@@ -29,6 +29,8 @@ namespace ThirteenthBellAlpha.Cards
         public PlayerSouth player;
         public PlayerNorth enemyPlayer;
 
+        bool playZ = true;
+
         int sideID;
 
         public PlayableCards(int handSize, Stack stack, int id, PlayerSouth p, int sID)
@@ -71,12 +73,24 @@ namespace ThirteenthBellAlpha.Cards
 
             if(sideID == 0)
             {
-                if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playerStack.stack.Count > 0)
+                
+
+                if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playZ)
                 {
-                    _projectiles.Add(new BasicRotating(hand[0].card.projectileTexture, .15f, hand[0].card.projectileSpeed, hand[0].card.projectileDamage, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
-                    Card holder = playerStack.stack.Peek();
-                    playerStack.stack.Dequeue();
-                    hand[0] = new CardSlot(0, holder, 0);
+                    if(playerStack.stack.Count > 0)
+                    {
+                        _projectiles.Add(new BasicRotating(hand[0].card.projectileTexture, .15f, hand[0].card.projectileSpeed, hand[0].card.projectileDamage, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
+                        Card holder = playerStack.stack.Peek();
+                        playerStack.stack.Dequeue();
+                        hand[0] = new CardSlot(0, holder, 0);
+                    }
+                    else
+                    {
+                        _projectiles.Add(new BasicRotating(hand[0].card.projectileTexture, .15f, hand[0].card.projectileSpeed, hand[0].card.projectileDamage, (int)player.Bounds.X + 20, (int)player.Bounds.Y + 20));
+                        playZ = false;
+                        hand[0].visible = false;
+                    }
+
                 }
 
                 else if (_currentKeyboardState.IsKeyDown(Keys.X) && _previousKeyboardState.IsKeyUp(Keys.X) && playerStack.stack.Count > 0)
@@ -164,12 +178,7 @@ namespace ThirteenthBellAlpha.Cards
                     ammo.Update(gameTime);
                 }
             }
-            
-
-            
-
-            
-
+           
             _previousKeyboardState = _currentKeyboardState;
         }
 

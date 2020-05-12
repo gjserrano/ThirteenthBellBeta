@@ -17,6 +17,8 @@ namespace ThirteenthBellAlpha.Cards
 
         public Card card;
 
+        public bool visible;
+
         Rectangle Rectangle
         {
             get
@@ -29,7 +31,7 @@ namespace ThirteenthBellAlpha.Cards
         {
             id = slotID;
             card = heldCard;
-
+            visible = true;
 
             if (sideID == 0)
             {
@@ -82,8 +84,11 @@ namespace ThirteenthBellAlpha.Cards
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(card.faceTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
+            if(visible)
+                spriteBatch.Draw(card.faceTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
         }
+
+        
 
         public override void Update(GameTime gameTime)
         {
