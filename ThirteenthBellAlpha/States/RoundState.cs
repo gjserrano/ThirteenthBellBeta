@@ -15,7 +15,7 @@ using System.Timers;
 
 namespace ThirteenthBellAlpha.States
 {
-    public class GameState : State
+    public class RoundState : State
     {
         private List<Component> _components;
 
@@ -28,16 +28,20 @@ namespace ThirteenthBellAlpha.States
         PlayableCards playerHand;
         PlayableCards enemyHand;
 
-        int round;
-        int playerWins;
-        int enemyWins;
+        public int round;
+        public int playerWins;
+        public int enemyWins;
 
         UserInterface userInterface;
-        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+
+        public RoundState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int roundNumber, int pWins, int eWins) : base(game, graphicsDevice, content)
         {
-            round = 0;
-            playerWins = 0;
-            enemyWins = 0;
+            round = roundNumber;
+            Console.WriteLine("Round: " + round);
+            playerWins = pWins;
+            Console.WriteLine("Player Wins: " + playerWins);
+            enemyWins = eWins;
+            Console.WriteLine("Enemy Wins: " + enemyWins);
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
             Background background = new Background(backgroundTexture);
 
@@ -52,6 +56,7 @@ namespace ThirteenthBellAlpha.States
             player2.Initialize(180, 300);
 
             var uiTexture = _content.Load<Texture2D>("Menu Backgrounds/ThirteenthBellUI_NoBackground");
+
             userInterface = new UserInterface(uiTexture, uiFont)
             {
                 playerStackText = "Test Text", //Hopefully we'll be able to plug in the different player stats for these
@@ -61,7 +66,7 @@ namespace ThirteenthBellAlpha.States
                 roundText = round,
                 playerText = playerWins,
                 enemyText = enemyWins,
-            };
+            }; 
 
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
@@ -82,24 +87,24 @@ namespace ThirteenthBellAlpha.States
                 enemyHand
             };
         }
-        
+
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
             spriteBatch.Begin();
 
             //Start
             _graphicsDevice.Clear(Color.CornflowerBlue);
 
-            foreach(var component in _components)
+            foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);
             }
 
             player.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            
+
             spriteBatch.End();
         }
 
@@ -110,17 +115,28 @@ namespace ThirteenthBellAlpha.States
 
         public override void Update(GameTime gameTime)
         {
-            player.Update(gameTime);
+            foreach(var comp in _components)
+            {
+                comp.Update(gameTime);
+            }
+            
+
+            /*player.Update(gameTime);
             player2.Update(gameTime);
             playerHand.Update(gameTime);
             enemyHand.Update(gameTime);
-            userInterface.Update(gameTime);
+            userInterface.Update(gameTime);*/
 
+
+            checkWin();
             //int timecounter = 30;
+        }
 
+        public int checkWin()
+        {
             for (int i = 0; i < playerHand._projectiles.Count; i++)
             {
-                if(Collisions.CollidesWith(playerHand._projectiles.ElementAt(i).Bounds, player2.Bounds))
+                if (Collisions.CollidesWith(playerHand._projectiles.ElementAt(i).Bounds, player2.Bounds))
                 {
                     Console.WriteLine("hit registered");
                     player2.life -= playerHand._projectiles.ElementAt(i).damage;
@@ -130,7 +146,7 @@ namespace ThirteenthBellAlpha.States
                 }
             }
 
-            for(int i = 0; i < enemyHand._enemyProjectiles.Count; i++)
+            for (int i = 0; i < enemyHand._enemyProjectiles.Count; i++)
             {
                 if (Collisions.CollidesWith(enemyHand._enemyProjectiles.ElementAt(i).Bounds, player.Bounds))
                 {
@@ -153,6 +169,9 @@ namespace ThirteenthBellAlpha.States
                     player.life = 30;
                     player2.life = 30;
 
+
+
+                    return 0;
                 }
                 else if (Convert.ToInt16(userInterface.enemyLifeText) > Convert.ToInt16(userInterface.playerLifeText))
                 {
@@ -161,33 +180,47 @@ namespace ThirteenthBellAlpha.States
                     userInterface.enemyLifeText = "30";
                     player.life = 30;
                     player2.life = 30;
+
+                    return 1;
                 }
 
                 userInterface.timecounter = 30;
                 userInterface.roundText++;
+
+                return 2;
             }
 
             if (player.life <= 0)
             {
-                userInterface.timecounter = 30;
                 userInterface.enemyText++;
                 userInterface.playerLifeText = "30";
                 userInterface.enemyLifeText = "30";
                 player.life = 30;
                 player2.life = 30;
-                
+
+                userInterface.timecounter = 30;
+                userInterface.roundText++;
+
+                return 1;
             }
 
             if (player2.life <= 0)
             {
-                userInterface.timecounter = 30;
+                round++;
+                playerWins++;
                 userInterface.playerText++;
                 userInterface.playerLifeText = "30";
                 userInterface.enemyLifeText = "30";
                 player.life = 30;
                 player2.life = 30;
 
-                //_game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+                userInterface.timecounter = 30;
+                userInterface.roundText++;
+
+                //CreateNewHand();
+                _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins));
+
+                return 0;
             }
 
             if (userInterface.playerText == 3)
@@ -199,6 +232,18 @@ namespace ThirteenthBellAlpha.States
             {
                 _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
             }
+
+            return 3;
+        }
+
+        public void CreateNewHand()
+        {
+            stack = new Stack(_content, 30, 0);
+            enemyStack = new Stack(_content, 30, 1);
+
+            playerHand = new PlayableCards(5, stack, 0, player, 0);
+            enemyHand = new PlayableCards(5, enemyStack, 1, player2, 1);
+
         }
     }
 }
