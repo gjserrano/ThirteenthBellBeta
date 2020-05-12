@@ -58,7 +58,7 @@ namespace ThirteenthBellAlpha.States
             ri = new RoundIntro(buttonTexture, buttonFont)
             {
                 Position = new Vector2(488, 200),
-                Text = "Round " + roundNumber + " starts in: \n" + "    "
+                Text = "Round " + roundNumber + " starts on the 13th Bell \n" + "                        "
             };
 
             round = roundNumber;
@@ -148,6 +148,11 @@ namespace ThirteenthBellAlpha.States
 
         public override void Update(GameTime gameTime)
         {
+
+            if(ri.timecounter > 13)
+            {
+                _components.Remove(ri);
+            }
             
             /*roundTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (roundTimer >= 1.0F) roundTimer = 0F;

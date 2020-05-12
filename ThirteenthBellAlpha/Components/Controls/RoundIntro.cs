@@ -27,7 +27,7 @@ namespace ThirteenthBellAlpha.Components.Controls
         public string Text { get; set; }
 
         public float timer;
-        public int timecounter = 30;
+        public int timecounter = 0;
 
         public RoundIntro(Texture2D texture, SpriteFont font)
         {
@@ -57,7 +57,7 @@ namespace ThirteenthBellAlpha.Components.Controls
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            timecounter -= (int)timer;
+            timecounter += (int)timer;
       
         }
     }
