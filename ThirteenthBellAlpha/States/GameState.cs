@@ -23,6 +23,9 @@ namespace ThirteenthBellAlpha.States
         PlayerSouth player;
         PlayerNorth player2;
 
+        Stack stack;
+        Stack enemyStack;
+
         PlayableCards playerHand;
         PlayableCards enemyHand;
 
@@ -63,8 +66,8 @@ namespace ThirteenthBellAlpha.States
 
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
 
-            Stack stack = new Stack(_content, 30, 0);
-            Stack enemyStack = new Stack(_content, 30, 1);
+            stack = new Stack(_content, 30, 0);
+            enemyStack = new Stack(_content, 30, 1);
 
             playerHand = new PlayableCards(5, stack, 0, player, 0);
             enemyHand = new PlayableCards(5, enemyStack, 1, player2, 1);
@@ -150,6 +153,7 @@ namespace ThirteenthBellAlpha.States
                     userInterface.enemyLifeText = "30";
                     player.life = 30;
                     player2.life = 30;
+
                 }
                 else if (Convert.ToInt16(userInterface.enemyLifeText) > Convert.ToInt16(userInterface.playerLifeText))
                 {
@@ -183,6 +187,8 @@ namespace ThirteenthBellAlpha.States
                 userInterface.enemyLifeText = "30";
                 player.life = 30;
                 player2.life = 30;
+
+                _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
 
             if (userInterface.playerText == 3)
