@@ -27,7 +27,7 @@ namespace ThirteenthBellAlpha.States
         
         public TestGameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            gameRound = new RoundState(game, graphicsDevice, content, round, playerWins, enemyWins);
+            gameRound = new RoundState(game, graphicsDevice, content, round, playerWins, enemyWins, true);
         }
 
 
@@ -44,13 +44,6 @@ namespace ThirteenthBellAlpha.States
         public override void Update(GameTime gameTime)
         {
             gameRound.Update(gameTime);
-            //Console.WriteLine(gameRound.checkWin());
-
-            if(gameRound.checkWin() == 0)
-            {
-                //gameRound = new RoundState(_game, _graphicsDevice, _content, round++, playerWins++, enemyWins);
-               // _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round++, playerWins++, enemyWins));
-            }
         }
     }
 }

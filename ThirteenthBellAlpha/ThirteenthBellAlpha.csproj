@@ -51,6 +51,7 @@
     <Compile Include="Components\Collisions.cs" />
     <Compile Include="Components\Controls\Button.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\Controls\RoundIntro.cs" />
     <Compile Include="Components\Lanes\Lane.cs" />
     <Compile Include="Components\Lanes\LaneSet.cs" />
     <Compile Include="Components\Lanes\LaneTile.cs" />
