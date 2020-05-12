@@ -57,8 +57,8 @@ namespace ThirteenthBellAlpha.States
                 enemyStackText = "Test Text",
                 enemyLifeText = Convert.ToString(player2.life),
                 roundText = round,
-                playerText = playerWins.ToString(),
-                enemyText = enemyWins.ToString(),
+                playerText = playerWins,
+                enemyText = enemyWins,
             };
 
             LaneSet laneSet = new LaneSet(_content, 0, 0, 0);
@@ -94,6 +94,7 @@ namespace ThirteenthBellAlpha.States
             {
                 component.Draw(gameTime, spriteBatch);
             }
+
             player.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             
@@ -114,17 +115,6 @@ namespace ThirteenthBellAlpha.States
             userInterface.Update(gameTime);
 
             //int timecounter = 30;
-         
-
-
-            /**foreach( var ammo in playerHand._projectiles)
-            {
-                if(Collisions.CollidesWith(ammo.Bounds, player2.Bounds))
-                {
-                    Console.WriteLine("hit registered");
-                    playerHand._projectiles.Remove(ammo);
-                }
-            }**/
 
             for (int i = 0; i < playerHand._projectiles.Count; i++)
             {
@@ -138,16 +128,62 @@ namespace ThirteenthBellAlpha.States
                 }
             }
 
-            for(int i = 0; i < enemyHand._projectiles.Count; i++)
+            for(int i = 0; i < enemyHand._enemyProjectiles.Count; i++)
             {
-                if (Collisions.CollidesWith(enemyHand._projectiles.ElementAt(i).Bounds, player.Bounds))
+                if (Collisions.CollidesWith(enemyHand._enemyProjectiles.ElementAt(i).Bounds, player.Bounds))
                 {
                     Console.WriteLine("hit registered");
-                    player.life -= enemyHand._projectiles.ElementAt(i).damage;
-                    enemyHand._projectiles.Remove(enemyHand._projectiles.ElementAt(i));
+                    player.life -= enemyHand._enemyProjectiles.ElementAt(i).damage;
+                    enemyHand._enemyProjectiles.Remove(enemyHand._enemyProjectiles.ElementAt(i));
                     Console.WriteLine(System.Convert.ToString(player.life));
                     userInterface.playerLifeText = Convert.ToString(player.life);
                 }
+            }
+
+            if (userInterface.timer >= 1.0F) userInterface.timer = 0F;
+            if (userInterface.timecounter < 0)
+            {
+                if (Convert.ToInt16(userInterface.playerLifeText) > Convert.ToInt16(userInterface.enemyLifeText))
+                {
+                    userInterface.playerText++;
+                }
+                else if (Convert.ToInt16(userInterface.enemyLifeText) > Convert.ToInt16(userInterface.playerLifeText))
+                {
+                    userInterface.enemyText++;
+                }
+
+                userInterface.timecounter = 30;
+                userInterface.roundText++;
+            }
+
+            if (player.life <= 0)
+            {
+                userInterface.timecounter = 30;
+                userInterface.enemyText++;
+                userInterface.playerLifeText = "30";
+                userInterface.enemyLifeText = "30";
+                player.life = 30;
+                player2.life = 30;
+            }
+
+            if (player2.life <= 0)
+            {
+                userInterface.timecounter = 30;
+                userInterface.playerText++;
+                userInterface.playerLifeText = "30";
+                userInterface.enemyLifeText = "30";
+                player.life = 30;
+                player2.life = 30;
+            }
+
+            if (userInterface.playerText == 3)
+            {
+                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+            }
+
+            if (userInterface.enemyText == 3)
+            {
+                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
             }
         }
     }

@@ -17,8 +17,6 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         Vector2 position { get; set; }
 
-
-
         Rectangle Rectangle
         {
             get
@@ -72,9 +70,10 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         public string enemyStackText { get; set; }
         public string enemyLifeText { get; set; }
+
         public int roundText { get; set; }
-        public string playerText { get; set; }
-        public string enemyText { get; set; }
+        public int playerText { get; set; }
+        public int enemyText { get; set; }
 
 
         public UserInterface(Texture2D textureUI, SpriteFont fontUI) 
@@ -123,19 +122,14 @@ namespace ThirteenthBellAlpha.MobileAspects
             spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1200, 320), Color.Black);
             spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(1200, 340), Color.Black);
         }
-        float timer;
-        int timecounter = 30;
+        public float timer;
+        public int timecounter = 30;
 
         public override void Update(GameTime gameTime)
         {
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             timecounter -= (int)timer;
-            if (timer >= 1.0F) timer = 0F;
-            if (timecounter < 0)
-            {
-                timecounter = 30;
-                roundText++;
-            }
+            
         }
     }
 }
