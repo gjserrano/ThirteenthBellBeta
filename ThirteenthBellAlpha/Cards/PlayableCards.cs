@@ -301,5 +301,35 @@ namespace ThirteenthBellAlpha.Cards
                 }
             }
         }
+
+        public void SetFalse()
+        {
+            playZ = false;
+            playX = false;
+            playC = false;
+            playV = false;
+            playB = false;
+
+            playQ = false;
+            playW = false;
+            playE = false;
+            playR = false;
+            playT = false;
+        }
+
+        public void SetTrue()
+        {
+            playZ = true;
+            playX = true;
+            playC = true;
+            playV = true;
+            playB = true;
+
+            playQ = true;
+            playW = true;
+            playE = true;
+            playR = true;
+            playT = true;
+        }
     }
 }

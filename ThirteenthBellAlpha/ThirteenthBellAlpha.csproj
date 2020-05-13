@@ -74,6 +74,7 @@
     <Compile Include="States\RoundState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\TestGameState.cs" />
+    <Compile Include="States\WinState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

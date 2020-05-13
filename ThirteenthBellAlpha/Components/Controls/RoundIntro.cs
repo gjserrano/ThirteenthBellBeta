@@ -16,6 +16,8 @@ namespace ThirteenthBellAlpha.Components.Controls
 
         public Vector2 Position { get; set; }
 
+        public bool visibleTimer;
+
         public Rectangle Rectangle
         {
             get
@@ -33,22 +35,33 @@ namespace ThirteenthBellAlpha.Components.Controls
         {
             _texture = texture;
             _font = font;
+            visibleTimer = true;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 0.99f);
 
-            if (!string.IsNullOrEmpty(Text))
+            if(visibleTimer)
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                if (!string.IsNullOrEmpty(Text))
+                {
+                    var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
+                    var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(_font, Text + " " + timecounter, new Vector2(x, y), Color.Black);
+                    spriteBatch.DrawString(_font, Text + " " + timecounter, new Vector2(x, y), Color.Black);
+                }
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(Text))
+                {
+                    var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
+                    var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
-            //spriteBatch.DrawString(_font, timecounter.ToString(), new Vector2(0, 0), Color.Black);
-
+                    spriteBatch.DrawString(_font, Text, new Vector2(x, y), Color.Black);
+                }
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -58,7 +71,6 @@ namespace ThirteenthBellAlpha.Components.Controls
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             timecounter += (int)timer;
-      
         }
     }
 }

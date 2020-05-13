@@ -75,11 +75,14 @@ namespace ThirteenthBellAlpha.MobileAspects
         public int playerText { get; set; }
         public int enemyText { get; set; }
 
+        public bool enableTimer;
+
 
         public UserInterface(Texture2D textureUI, SpriteFont fontUI) 
         {
             texture = textureUI;
             font = fontUI;
+            enableTimer = false;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -122,14 +125,17 @@ namespace ThirteenthBellAlpha.MobileAspects
             spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1200, 320), Color.Black);
             spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(1200, 340), Color.Black);
         }
+
         public float timer;
         public int timecounter = 30;
 
         public override void Update(GameTime gameTime)
         {
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timecounter -= (int)timer;
-            
+            if(enableTimer)
+            {
+                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                timecounter -= (int)timer;
+            }
         }
     }
 }

@@ -17,12 +17,10 @@ namespace ThirteenthBellAlpha.States
 {
     public class RoundState : State
     {
-        //bool phase;
-        //Button playGameButton;
-        //public float roundTimer;
-        //public int roundTimeCounter;
-
         RoundIntro ri;
+        RoundIntro winStatement;
+        int winIndicator;
+        int timeTracker;
 
         private List<Component> _components;
 
@@ -41,27 +39,21 @@ namespace ThirteenthBellAlpha.States
 
         UserInterface userInterface;
 
-        public RoundState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int roundNumber, int pWins, int eWins, bool p) : base(game, graphicsDevice, content)
+        public RoundState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int roundNumber, int pWins, int eWins, int wI, bool p) : base(game, graphicsDevice, content)
         {
-            //roundTimeCounter = 0;
-            //phase = p;
-            //var buttonTexture = _content.Load<Texture2D>("Controls/Play Game");
-            //var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
-            /*playGameButton = new Button(buttonTexture, buttonFont)
-            {
-                Position = new Vector2(488, 200),
-                Text = "Round " + roundNumber + " starts in \n" + roundTimeCounter,
-            };*/
+            round = roundNumber;
+            winIndicator = wI;
 
             var buttonTexture = _content.Load<Texture2D>("Controls/Play Game");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
             ri = new RoundIntro(buttonTexture, buttonFont)
             {
-                Position = new Vector2(488, 200),
-                Text = "Round " + roundNumber + " starts on the 13th Bell \n" + "                        "
+                Position = new Vector2(488, 300),
+                Text = "Round " + round + " starts on the 13th Bell \n" + "                        "
             };
 
-            round = roundNumber;
+            
+
             Console.WriteLine("Round: " + round);
             playerWins = pWins;
             Console.WriteLine("Player Wins: " + playerWins);
@@ -110,25 +102,18 @@ namespace ThirteenthBellAlpha.States
                 enemyStack,
                 playerHand,
                 enemyHand,
-                ri
+                ri,
             };
 
-            /*if (phase)
-            {
-                _components.Add(playGameButton);
-            }*/
+            playerHand.SetFalse();
+            enemyHand.SetFalse();
         }
-
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
             spriteBatch.Begin();
 
-            //Start
             _graphicsDevice.Clear(Color.CornflowerBlue);
-
-            //playGameButton.Draw(gameTime, spriteBatch);
 
             foreach (var component in _components)
             {
@@ -148,41 +133,31 @@ namespace ThirteenthBellAlpha.States
 
         public override void Update(GameTime gameTime)
         {
-
-            if(ri.timecounter > 13)
-            {
-                _components.Remove(ri);
-            }
-            
-            /*roundTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (roundTimer >= 1.0F) roundTimer = 0F;
-            ///Console.WriteLine(roundTimer);
-            roundTimeCounter += (int)roundTimer;
-            playGameButton.Text = "Round " + round + " starts in \n" + roundTimeCounter;
-            Console.WriteLine(roundTimeCounter);
-            playGameButton.Update(gameTime);*/
-
             foreach (var comp in _components)
             {
                 comp.Update(gameTime);
             }
 
-            /*if (roundTimer > 13)
+            if (ri.timecounter > 3)
             {
-                phase = false;
-                _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, phase));
+                _components.Remove(ri);
+                playerHand.SetTrue();
+                enemyHand.SetTrue();
+                userInterface.enableTimer = true;
+            }
+
+            /*if(winIndicator != 0)
+            {
+                winStatement.Update(gameTime);
+                Console.WriteLine(winIndicator);
+
+                if (winStatement.timecounter > 500)
+                {
+                    _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+                }
             }*/
 
-
-            /*player.Update(gameTime);
-            player2.Update(gameTime);
-            playerHand.Update(gameTime);
-            enemyHand.Update(gameTime);
-            userInterface.Update(gameTime);*/
-
-
             checkWin();
-            //int timecounter = 30;
         }
 
         public int checkWin()
@@ -212,39 +187,51 @@ namespace ThirteenthBellAlpha.States
             }
 
             if (userInterface.timer >= 1.0F) userInterface.timer = 0F;
+
             if (userInterface.timecounter < 0)
             {
                 if (Convert.ToInt16(userInterface.playerLifeText) > Convert.ToInt16(userInterface.enemyLifeText))
                 {
+                    round++;
+                    playerWins++;
                     userInterface.playerText++;
                     userInterface.playerLifeText = "30";
                     userInterface.enemyLifeText = "30";
                     player.life = 30;
                     player2.life = 30;
 
+                    userInterface.timecounter = 30;
+                    userInterface.roundText++;
 
+                    _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, winIndicator, true));
 
                     return 0;
                 }
                 else if (Convert.ToInt16(userInterface.enemyLifeText) > Convert.ToInt16(userInterface.playerLifeText))
                 {
+                    round++;
+                    enemyWins++;
                     userInterface.enemyText++;
                     userInterface.playerLifeText = "30";
                     userInterface.enemyLifeText = "30";
                     player.life = 30;
                     player2.life = 30;
 
+                    userInterface.timecounter = 30;
+                    userInterface.roundText++;
+
+                    _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, winIndicator, true));
+
                     return 1;
                 }
-
-                userInterface.timecounter = 30;
-                userInterface.roundText++;
 
                 return 2;
             }
 
             if (player.life <= 0)
             {
+                round++;
+                enemyWins++;
                 userInterface.enemyText++;
                 userInterface.playerLifeText = "30";
                 userInterface.enemyLifeText = "30";
@@ -253,6 +240,8 @@ namespace ThirteenthBellAlpha.States
 
                 userInterface.timecounter = 30;
                 userInterface.roundText++;
+
+                _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, winIndicator, true));
 
                 return 1;
             }
@@ -270,23 +259,28 @@ namespace ThirteenthBellAlpha.States
                 userInterface.timecounter = 30;
                 userInterface.roundText++;
 
-                //CreateNewHand();
-                _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, true));
+                _game.ChangeState(new RoundState(_game, _graphicsDevice, _content, round, playerWins, enemyWins, winIndicator, true));
 
                 return 0;
             }
 
             if (userInterface.playerText == 3)
             {
-                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+                _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 1));
+              
+
+                return 3;
             }
 
             if (userInterface.enemyText == 3)
             {
-                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+                _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 2));
+                
+
+                return 3;
             }
 
-            return 3;
+            return 4;
         }
 
         public void CreateNewHand()
@@ -296,7 +290,6 @@ namespace ThirteenthBellAlpha.States
 
             playerHand = new PlayableCards(5, stack, 0, player, 0);
             enemyHand = new PlayableCards(5, enemyStack, 1, player2, 1);
-
         }
     }
 }

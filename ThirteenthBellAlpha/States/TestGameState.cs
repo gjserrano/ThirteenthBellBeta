@@ -27,7 +27,7 @@ namespace ThirteenthBellAlpha.States
         
         public TestGameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            gameRound = new RoundState(game, graphicsDevice, content, round, playerWins, enemyWins, true);
+            gameRound = new RoundState(game, graphicsDevice, content, round, playerWins, enemyWins, 0, true);
         }
 
 
