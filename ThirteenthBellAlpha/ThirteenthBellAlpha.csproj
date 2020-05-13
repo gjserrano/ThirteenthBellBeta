@@ -55,6 +55,8 @@
     <Compile Include="Components\Lanes\Lane.cs" />
     <Compile Include="Components\Lanes\LaneSet.cs" />
     <Compile Include="Components\Lanes\LaneTile.cs" />
+    <Compile Include="Components\particle.cs" />
+    <Compile Include="Components\ParticleSystem.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="MobileAspects\PlayerNorth.cs" />
     <Compile Include="MobileAspects\PlayerSouth.cs" />

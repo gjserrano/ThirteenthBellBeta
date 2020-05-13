@@ -20,7 +20,7 @@ namespace ThirteenthBellAlpha.MobileAspects
     }
 
     /// <summary>
-    /// A class representing a paddle
+    /// A class representing a player
     /// </summary>
     public class PlayerSouth
     {
@@ -47,7 +47,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         const int FRAME_HEIGHT = 110;
 
         /// <summary>
-        /// This paddle's bounds
+        /// This player's bounds
         /// </summary>
         public BoundingRectangle Bounds;
 
@@ -78,16 +78,16 @@ namespace ThirteenthBellAlpha.MobileAspects
         public int life;
 
         /// <summary>
-        /// Creates a paddle
+        /// Creates a player
         /// </summary>
-        /// <param name="game">The game this paddle belongs to</param>
+        /// <param name="game">The game this player belongs to</param>
         public PlayerSouth(Game1 game)
         {
             this.game = game;
         }
 
         /// <summary>
-        /// Initializes the paddle, setting its initial size 
+        /// Initializes the player, setting its initial size 
         /// and centering it on the left side of the screen.
         /// </summary>
         public void Initialize(int of, int distance)
@@ -106,7 +106,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         }
 
         /// <summary>
-        /// Loads the paddle's content
+        /// Loads the player's content
         /// </summary>
         /// <param name="content">The ContentManager to use</param>
         public void LoadContent(ContentManager content)
@@ -118,7 +118,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         private KeyboardState _previousKeyboardState;
 
         /// <summary>
-        /// Updates the paddle
+        /// Updates the player
         /// </summary>
         /// <param name="gameTime">The game's GameTime</param>
         public void Update(GameTime gameTime)
@@ -173,10 +173,10 @@ namespace ThirteenthBellAlpha.MobileAspects
         }
 
         /// <summary>
-        /// Draw the paddle
+        /// Draw the player
         /// </summary>
         /// <param name="spriteBatch">
-        /// The SpriteBatch to draw the paddle with.  This method should 
+        /// The SpriteBatch to draw the player with.  This method should 
         /// be invoked between SpriteBatch.Begin() and SpriteBatch.End() calls.
         /// </param>
         public void Draw(SpriteBatch spriteBatch)

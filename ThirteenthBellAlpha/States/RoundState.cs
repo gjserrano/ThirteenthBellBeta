@@ -25,6 +25,9 @@ namespace ThirteenthBellAlpha.States
         PlayerSouth player;
         PlayerNorth player2;
 
+        ParticleSystem rain;
+        Texture2D particleTexture;
+
         Stack stack;
         Stack enemyStack;
 
@@ -70,6 +73,9 @@ namespace ThirteenthBellAlpha.States
 
             var uiTexture = _content.Load<Texture2D>("Menu Backgrounds/ThirteenthBellUI_NoBackground");
 
+            particleTexture = _content.Load<Texture2D>("Particle");
+            
+
             userInterface = new UserInterface(uiTexture, uiFont)
             {
                 playerStackText = "", 
@@ -101,6 +107,32 @@ namespace ThirteenthBellAlpha.States
                 ri,
             };
 
+            Random random = new Random();
+            //Load Rain Particle----------------------------------------------------------------           
+            rain = new ParticleSystem(graphicsDevice, 1000, particleTexture);
+            rain.SpawnPerFrame = 2;
+            rain.SpawnParticle = (ref Particle particle) =>
+            {
+                // MouseState mouse = Mouse.GetState();
+                particle.Position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width), 0);
+                particle.Velocity = new Vector2(
+                    MathHelper.Lerp(0, 1, (float)random.NextDouble()), // X between -50 and 50
+                    MathHelper.Lerp(0, 1042, (float)random.NextDouble()) // Y between 0 and 100
+                    );
+                particle.Acceleration = 0.1f * new Vector2(0, (float)-random.NextDouble());
+                particle.Color = Color.Aqua;
+                particle.Scale = 1f;
+                particle.Life = 1.0f;
+            };
+            // Set the UpdateParticle method
+            rain.UpdateParticle = (float deltaT, ref Particle particle) =>
+            {
+                particle.Velocity += deltaT * particle.Acceleration;
+                particle.Position += deltaT * particle.Velocity;
+                particle.Scale -= deltaT;
+                particle.Life -= deltaT;
+            };
+
             playerHand.SetFalse();
             enemyHand.SetFalse();
         }
@@ -108,17 +140,17 @@ namespace ThirteenthBellAlpha.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-
-            _graphicsDevice.Clear(Color.CornflowerBlue);
-
+            
+            //_graphicsDevice.Clear(Color.CornflowerBlue);
+            
             foreach (var component in _components)
             {
                 component.Draw(gameTime, spriteBatch);
             }
-
+            rain.Draw(spriteBatch);
             player.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-
+            
             spriteBatch.End();
         }
 
@@ -144,7 +176,7 @@ namespace ThirteenthBellAlpha.States
 
             player.Update(gameTime);
             player2.Update(gameTime);
-
+            rain.Update(gameTime);
             checkWin();
         }
 

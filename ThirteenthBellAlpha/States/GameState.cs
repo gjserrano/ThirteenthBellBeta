@@ -28,6 +28,8 @@ namespace ThirteenthBellAlpha.States
         PlayableCards playerHand;
         PlayableCards enemyHand;
 
+       
+
         int round;
         int playerWins;
         int enemyWins;
@@ -82,6 +84,9 @@ namespace ThirteenthBellAlpha.States
                 playerHand,
                 enemyHand
             };
+
+           
+            
         }
         
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -98,7 +103,7 @@ namespace ThirteenthBellAlpha.States
 
             player.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            
+           
             spriteBatch.End();
         }
 
@@ -114,6 +119,7 @@ namespace ThirteenthBellAlpha.States
             playerHand.Update(gameTime);
             enemyHand.Update(gameTime);
             userInterface.Update(gameTime);
+
 
             for (int i = 0; i < playerHand._projectiles.Count; i++)
             {
