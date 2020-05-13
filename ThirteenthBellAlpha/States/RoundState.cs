@@ -52,8 +52,6 @@ namespace ThirteenthBellAlpha.States
                 Text = "Round " + round + " starts on the 13th Bell \n" + "                        "
             };
 
-            
-
             Console.WriteLine("Round: " + round);
             playerWins = pWins;
             Console.WriteLine("Player Wins: " + playerWins);
@@ -145,6 +143,9 @@ namespace ThirteenthBellAlpha.States
                 enemyHand.SetTrue();
                 userInterface.enableTimer = true;
             }
+
+            player.Update(gameTime);
+            player2.Update(gameTime);
 
             /*if(winIndicator != 0)
             {
