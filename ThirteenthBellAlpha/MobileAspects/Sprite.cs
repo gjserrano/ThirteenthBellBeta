@@ -29,7 +29,6 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// </summary>
         public int Height => source.Height;
 
-
         /// <summary>
         /// Constructs a new Sprite
         /// </summary>

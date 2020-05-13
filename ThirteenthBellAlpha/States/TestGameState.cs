@@ -17,19 +17,16 @@ namespace ThirteenthBellAlpha.States
 {
     public class TestGameState : State
     {
-
         public RoundState gameRound;
 
         int round = 1;
         int playerWins = 0;
         int enemyWins = 0;
 
-        
         public TestGameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             gameRound = new RoundState(game, graphicsDevice, content, round, playerWins, enemyWins, 0, true);
         }
-
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

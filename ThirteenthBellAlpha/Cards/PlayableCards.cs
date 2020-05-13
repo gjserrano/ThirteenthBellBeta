@@ -56,7 +56,6 @@ namespace ThirteenthBellAlpha.Cards
                 Card holder = playerStack.stack.Peek();
                 playerStack.stack.Dequeue();
                 hand[i] = (new CardSlot(i, holder, id));
-                //_projectiles.Add(new BasicRotating(hand[i].card.projectileTexture, .15f, 20, 2));
             }
         }
 
@@ -73,7 +72,6 @@ namespace ThirteenthBellAlpha.Cards
                 Card holder = enemyStack.stack.Peek();
                 enemyStack.stack.Dequeue();
                 enemyHand[i] = (new CardSlot(i, holder, id));
-                //_projectiles.Add(new BasicRotating(hand[i].card.projectileTexture, .15f, 20, 2));
             }
         }
 
@@ -83,8 +81,7 @@ namespace ThirteenthBellAlpha.Cards
 
             if(sideID == 0)
             {
-                
-
+   
                 if (_currentKeyboardState.IsKeyDown(Keys.Z) && _previousKeyboardState.IsKeyUp(Keys.Z) && playZ)
                 {
                     if(playerStack.stack.Count > 0)
@@ -100,9 +97,7 @@ namespace ThirteenthBellAlpha.Cards
                         playZ = false;
                         hand[0].visible = false;
                     }
-
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.X) && _previousKeyboardState.IsKeyUp(Keys.X) && playX)
                 {
                     if (playerStack.stack.Count > 0)
@@ -119,7 +114,6 @@ namespace ThirteenthBellAlpha.Cards
                         hand[1].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.C) && _previousKeyboardState.IsKeyUp(Keys.C) && playC)
                 {
                     if (playerStack.stack.Count > 0)
@@ -136,7 +130,6 @@ namespace ThirteenthBellAlpha.Cards
                         hand[2].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.V) && _previousKeyboardState.IsKeyUp(Keys.V) && playV)
                 {
                     if (playerStack.stack.Count > 0)
@@ -153,7 +146,6 @@ namespace ThirteenthBellAlpha.Cards
                         hand[3].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.B) && _previousKeyboardState.IsKeyUp(Keys.B) && playB)
                 {
                     if (playerStack.stack.Count > 0)
@@ -195,7 +187,6 @@ namespace ThirteenthBellAlpha.Cards
                         enemyHand[0].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.W) && _previousKeyboardState.IsKeyUp(Keys.W) && playW)
                 {
                     if (enemyStack.stack.Count > 0)
@@ -212,7 +203,6 @@ namespace ThirteenthBellAlpha.Cards
                         enemyHand[1].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.E) && _previousKeyboardState.IsKeyUp(Keys.E) && playE)
                 {
                     if (enemyStack.stack.Count > 0)
@@ -229,7 +219,6 @@ namespace ThirteenthBellAlpha.Cards
                         enemyHand[2].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.R) && _previousKeyboardState.IsKeyUp(Keys.R) && playR)
                 {
                     if (enemyStack.stack.Count > 0)
@@ -246,7 +235,6 @@ namespace ThirteenthBellAlpha.Cards
                         enemyHand[3].visible = false;
                     }
                 }
-
                 else if (_currentKeyboardState.IsKeyDown(Keys.T) && _previousKeyboardState.IsKeyUp(Keys.T) && playT)
                 {
                     if (enemyStack.stack.Count > 0)
@@ -263,7 +251,6 @@ namespace ThirteenthBellAlpha.Cards
                         enemyHand[4].visible = false;
                     }
                 }
-
                 foreach (var ammo in _enemyProjectiles)
                 {
                     ammo.Update(gameTime);

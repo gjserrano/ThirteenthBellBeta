@@ -33,6 +33,7 @@ namespace ThirteenthBellAlpha.States
         int enemyWins;
 
         UserInterface userInterface;
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             round = 0;
@@ -83,10 +84,8 @@ namespace ThirteenthBellAlpha.States
             };
         }
         
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
             spriteBatch.Begin();
 
             //Start
@@ -116,8 +115,6 @@ namespace ThirteenthBellAlpha.States
             enemyHand.Update(gameTime);
             userInterface.Update(gameTime);
 
-            //int timecounter = 30;
-
             for (int i = 0; i < playerHand._projectiles.Count; i++)
             {
                 if(Collisions.CollidesWith(playerHand._projectiles.ElementAt(i).Bounds, player2.Bounds))
@@ -143,6 +140,7 @@ namespace ThirteenthBellAlpha.States
             }
 
             if (userInterface.timer >= 1.0F) userInterface.timer = 0F;
+
             if (userInterface.timecounter < 0)
             {
                 if (Convert.ToInt16(userInterface.playerLifeText) > Convert.ToInt16(userInterface.enemyLifeText))
@@ -186,8 +184,6 @@ namespace ThirteenthBellAlpha.States
                 userInterface.enemyLifeText = "30";
                 player.life = 30;
                 player2.life = 30;
-
-                //_game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
 
             if (userInterface.playerText == 3)

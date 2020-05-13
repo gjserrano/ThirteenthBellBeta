@@ -32,6 +32,7 @@ namespace ThirteenthBellAlpha.States
                 Position = new Vector2(488, 300),
                 Text = "Player " + playerWin + " has won! \n Returning to Menu"
             };
+
             ri.visibleTimer = false;
         }
 

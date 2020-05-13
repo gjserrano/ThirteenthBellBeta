@@ -44,7 +44,7 @@ namespace ThirteenthBellAlpha.Components
 
         public override void Update(GameTime gameTime)
         {
-            //throw new NotImplementedException();
+
         }
 
         #endregion

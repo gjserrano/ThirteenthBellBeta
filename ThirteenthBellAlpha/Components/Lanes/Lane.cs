@@ -10,7 +10,6 @@ namespace ThirteenthBellAlpha.Components.Lanes
 {
     class Lane : Component
     {
-     
         List<LaneTile> compiledLane = new List<LaneTile>();
 
         public Lane(int laneNum, Texture2D laneTileTexture, Texture2D bottomTileTexture, Texture2D topTileTexture, int numLanes)
@@ -35,7 +34,7 @@ namespace ThirteenthBellAlpha.Components.Lanes
 
         public override void Update(GameTime gameTime)
         {
-            //throw new NotImplementedException();
+
         }
     }
 }

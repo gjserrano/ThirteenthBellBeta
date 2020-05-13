@@ -77,7 +77,6 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         public bool enableTimer;
 
-
         public UserInterface(Texture2D textureUI, SpriteFont fontUI) 
         {
             texture = textureUI;
@@ -120,6 +119,7 @@ namespace ThirteenthBellAlpha.MobileAspects
 
                 spriteBatch.DrawString(font, enemyLifeText, new Vector2(x, y), Color.Black);
             }
+
             spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(100, 350), Color.Black);
             spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(1200, 300), Color.Black);
             spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1200, 320), Color.Black);

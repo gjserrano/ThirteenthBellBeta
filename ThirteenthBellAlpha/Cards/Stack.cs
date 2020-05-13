@@ -25,7 +25,6 @@ namespace ThirteenthBellAlpha.Cards
             List<int> projectileDamageList = new List<int>();
 
             var commonDarkBasicTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Basic Card"); textureList.Add(commonDarkBasicTexture);
-            //var commonDarkCrystalTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Crystal Card"); textureList.Add(commonDarkCrystalTexture);
             var commonDarkMediumTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Medium Card"); textureList.Add(commonDarkMediumTexture);
             var commonDarkLargeTexture = _content.Load<Texture2D>("Cards/Dark/Common/Common Dark Large Card"); textureList.Add(commonDarkLargeTexture);
 
@@ -44,7 +43,6 @@ namespace ThirteenthBellAlpha.Cards
                 {
                     int index = rand.Next(textureList.Count);
                     stack.Enqueue(new Card(textureList[index], commonCardBack1, projectileList[index], true, new Vector2(stack.Count + 10, 622), projectileSpeedList[index], projectileDamageList[index]));
-                    //stack.Enqueue(new Card(textureList[index], new Vector2(stack.Count * 40, 422)));
                 }
             }
 
@@ -64,11 +62,6 @@ namespace ThirteenthBellAlpha.Cards
             {
                 card.Draw(gameTime, spriteBatch);
             }
-
-            /**for(int i = stack.Count - 1; i > 0; i--)
-            {
-                stack.ElementAt(i).Draw(gameTime, spriteBatch);
-            }**/
         }
 
         public override void Update(GameTime gameTime)

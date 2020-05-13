@@ -18,9 +18,7 @@ namespace ThirteenthBellAlpha.States
     public class RoundState : State
     {
         RoundIntro ri;
-        RoundIntro winStatement;
         int winIndicator;
-        int timeTracker;
 
         private List<Component> _components;
 
@@ -52,11 +50,11 @@ namespace ThirteenthBellAlpha.States
                 Text = "Round " + round + " starts on the 13th Bell \n" + "                        "
             };
 
-            Console.WriteLine("Round: " + round);
+            //Console.WriteLine("Round: " + round);
             playerWins = pWins;
-            Console.WriteLine("Player Wins: " + playerWins);
+            //Console.WriteLine("Player Wins: " + playerWins);
             enemyWins = eWins;
-            Console.WriteLine("Enemy Wins: " + enemyWins);
+            //Console.WriteLine("Enemy Wins: " + enemyWins);
             var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
             Background background = new Background(backgroundTexture);
 
@@ -146,17 +144,6 @@ namespace ThirteenthBellAlpha.States
 
             player.Update(gameTime);
             player2.Update(gameTime);
-
-            /*if(winIndicator != 0)
-            {
-                winStatement.Update(gameTime);
-                Console.WriteLine(winIndicator);
-
-                if (winStatement.timecounter > 500)
-                {
-                    _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
-                }
-            }*/
 
             checkWin();
         }
@@ -269,7 +256,6 @@ namespace ThirteenthBellAlpha.States
             {
                 _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 1));
               
-
                 return 3;
             }
 
@@ -277,7 +263,6 @@ namespace ThirteenthBellAlpha.States
             {
                 _game.ChangeState(new WinState(_game, _graphicsDevice, _content, 2));
                 
-
                 return 3;
             }
 

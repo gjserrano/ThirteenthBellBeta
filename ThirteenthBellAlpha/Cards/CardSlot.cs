@@ -88,8 +88,6 @@ namespace ThirteenthBellAlpha.Cards
                 spriteBatch.Draw(card.faceTexture, Rectangle, null, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, .98f);
         }
 
-        
-
         public override void Update(GameTime gameTime)
         {
 

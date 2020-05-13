@@ -21,15 +21,12 @@ namespace ThirteenthBellAlpha.Projectile
 
         public BoundingRectangle Bounds;
 
-        //public PlayerSouth player;
-
         public BasicRotating(Texture2D pTexture, float rSpeed, int pSpeed, int d , int playerX, int playerY)
         {
             projectileTexture = pTexture;
             rotateSpeed = rSpeed;
             projectileSpeed = pSpeed;
             damage = d;
-            //player = pOwner;
 
             Bounds.Width = projectileTexture.Width;
             Bounds.Height = projectileTexture.Height;
@@ -44,8 +41,6 @@ namespace ThirteenthBellAlpha.Projectile
             Vector2 origin = new Vector2(Bounds.Width/2, Bounds.Height/2);
 
             spriteBatch.Draw(projectileTexture, location, sourceRectangle, Color.White, angle, origin, 1.0f, SpriteEffects.None, 1);
-
-            //spriteBatch.Draw(projectileTexture, Bounds, new Rectangle(500, 500, 50, 50), Color.White, angle, new Vector2(500, 500), SpriteEffects.None, 1);
         }
 
         public override void Update(GameTime gameTime)

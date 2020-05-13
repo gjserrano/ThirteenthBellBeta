@@ -10,8 +10,6 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ThirteenthBellAlpha.MobileAspects
 {
-
-
     enum PlayState
     {
         South = 2, //Waling South(down) is the 2 row
@@ -20,6 +18,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         North = 0, //Walking North is the 0 row
         Idle = 4,
     }
+
     /// <summary>
     /// A class representing a paddle
     /// </summary>
@@ -29,6 +28,7 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// The game object
         /// </summary>
         Game1 game;
+
         /// <summary>
         /// How quickly the animation should advance frames (1/8 second as milliseconds)
         /// </summary>
@@ -51,23 +51,26 @@ namespace ThirteenthBellAlpha.MobileAspects
         /// </summary>
         public BoundingRectangle Bounds;
 
-
         /// <summary>
         /// This player's texture
         /// </summary>
         Texture2D texture;
+
         /// <summary>
         /// Distance between the first lane and the edge of the game
         /// </summary>
         private int borderDistance;
+
         /// <summary>
         /// Number of clicks away from the left
         /// </summary>
         private int count;
+
         /// <summary>
         /// distance between rows.
         /// </summary>
         private int offset;
+
         int frame;
         PlayState state;
         TimeSpan timer;
@@ -113,6 +116,7 @@ namespace ThirteenthBellAlpha.MobileAspects
 
         private KeyboardState _currentKeyboardState;
         private KeyboardState _previousKeyboardState;
+
         /// <summary>
         /// Updates the paddle
         /// </summary>
@@ -124,7 +128,6 @@ namespace ThirteenthBellAlpha.MobileAspects
             // Move left
             if (_currentKeyboardState.IsKeyDown(Keys.Left) && _previousKeyboardState.IsKeyUp(Keys.Left)) 
             {
-                
                 if (count > 0)
                 {
                     state = PlayState.West;
@@ -132,6 +135,7 @@ namespace ThirteenthBellAlpha.MobileAspects
                     Bounds.X = Bounds.X - offset;
                 }
             }
+
             // Move Right
             else if (_currentKeyboardState.IsKeyDown(Keys.Right) && _previousKeyboardState.IsKeyUp(Keys.Right))
             {
@@ -166,7 +170,6 @@ namespace ThirteenthBellAlpha.MobileAspects
             frame %= 2;
 
             _previousKeyboardState = _currentKeyboardState;
-
         }
 
         /// <summary>

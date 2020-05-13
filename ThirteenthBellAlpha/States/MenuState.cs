@@ -75,8 +75,6 @@ namespace ThirteenthBellAlpha.States
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
 
-            //spriteBatch.Draw(backgroundTexture1, new Vector2(0, 0), new Rectangle(0, 0, 1366, 768), Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f); ;
-
             spriteBatch.End();
         }
 
