@@ -121,9 +121,9 @@ namespace ThirteenthBellAlpha.MobileAspects
             }
 
             spriteBatch.DrawString(font, timecounter.ToString(), new Vector2(100, 350), Color.Black);
-            spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(1200, 300), Color.Black);
-            spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1200, 320), Color.Black);
-            spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(1200, 340), Color.Black);
+            spriteBatch.DrawString(font, "Round Number: "+roundText, new Vector2(1150, 300), Color.Black);
+            spriteBatch.DrawString(font, "Player Wins: "+playerText, new Vector2(1150, 340), Color.Black);
+            spriteBatch.DrawString(font, "Enemy Wins: "+enemyText, new Vector2(1150, 380), Color.Black);
         }
 
         public float timer;

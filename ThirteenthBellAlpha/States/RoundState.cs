@@ -47,6 +47,7 @@ namespace ThirteenthBellAlpha.States
 
             var buttonTexture = _content.Load<Texture2D>("Controls/Play Game");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
+            var otherFont = _content.Load<SpriteFont>("Fonts/LargerFont");
             ri = new RoundIntro(buttonTexture, buttonFont)
             {
                 Position = new Vector2(488, 300),
@@ -58,8 +59,14 @@ namespace ThirteenthBellAlpha.States
             //Console.WriteLine("Player Wins: " + playerWins);
             enemyWins = eWins;
             //Console.WriteLine("Enemy Wins: " + enemyWins);
-            var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/Stone Brick Background");
-            Background background = new Background(backgroundTexture);
+            List<Texture2D> uiBackgrounds = new List<Texture2D>();
+
+            var backgroundTexture = _content.Load<Texture2D>("Menu Backgrounds/5"); uiBackgrounds.Add(backgroundTexture);
+            var backgroundTexture2 = _content.Load<Texture2D>("Menu Backgrounds/6"); uiBackgrounds.Add(backgroundTexture2);
+            var backgroundTexture3 = _content.Load<Texture2D>("Menu Backgrounds/4"); uiBackgrounds.Add(backgroundTexture3);
+            Random r = new Random();
+
+            Background background = new Background(uiBackgrounds.ElementAt(r.Next(uiBackgrounds.Count)));
 
             var uiFont = _content.Load<SpriteFont>("Fonts/Font");
 
@@ -71,12 +78,13 @@ namespace ThirteenthBellAlpha.States
             player2.LoadContent(content);
             player2.Initialize(180, 300);
 
+            
             var uiTexture = _content.Load<Texture2D>("Menu Backgrounds/ThirteenthBellUI_NoBackground");
 
             particleTexture = _content.Load<Texture2D>("Particle");
             
 
-            userInterface = new UserInterface(uiTexture, uiFont)
+            userInterface = new UserInterface(uiTexture, otherFont)
             {
                 playerStackText = "", 
                 playerLifeText = Convert.ToString(player.life),
